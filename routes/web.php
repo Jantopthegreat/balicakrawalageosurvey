@@ -45,5 +45,15 @@ Route::prefix('store')->name('store.')->group(function (): void {
     Route::get('/{slug}', [StoreController::class, 'show'])->name('show');
 });
 
+Route::prefix('blog')->name('blog.')->group(function (): void {
+    Route::get('/', [BlogController::class, 'index'])->name('index');
+    Route::get('/{slug}', [BlogController::class, 'show'])->name('show');
+});
+
+
+Route::get('/about', function () {
+    return redirect()->to(route('home') . '#about');
+})->name('about');
+
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
