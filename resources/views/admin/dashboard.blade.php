@@ -12,7 +12,6 @@
             <a class="admin-brand" href="{{ route('admin.dashboard') }}">Dhurva<span>Tech</span></a>
             <p class="admin-sidebar-label">Workspace</p>
             <a class="admin-nav-link admin-nav-link-active" href="{{ route('admin.dashboard') }}">Dashboard</a>
-            <a class="admin-nav-link" href="{{ route('admin.blog.index') }}">Blog</a>
             <a class="admin-nav-link" href="{{ route('admin.contact.index') }}">Kontak</a>
             <a class="admin-nav-link" href="{{ route('admin.services.index') }}">Layanan</a>
             <a class="admin-nav-link" href="{{ route('admin.products.index') }}">Katalog</a>
@@ -38,11 +37,6 @@
                     <span class="admin-stat-label">Total akun pengguna</span>
                     <strong>{{ $userCount }}</strong>
                     <span class="admin-stat-note">Terdaftar di sistem</span>
-                </article>
-                <article class="admin-stat-card">
-                    <span class="admin-stat-label">Artikel blog</span>
-                    <strong>{{ $articleCount }}</strong>
-                    <span class="admin-stat-note">Konten tersimpan</span>
                 </article>
                 <article class="admin-stat-card admin-stat-card-accent">
                     <span class="admin-stat-label">Status website</span>

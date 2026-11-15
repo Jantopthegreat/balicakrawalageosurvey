@@ -12,7 +12,6 @@ class AdminDashboardController extends Controller
     {
         return view('admin.dashboard', [
             'userCount' => User::count(),
-            'articleCount' => Article::count(),
         ]);
     }
 }
