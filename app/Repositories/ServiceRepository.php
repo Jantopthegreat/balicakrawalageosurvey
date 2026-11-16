@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use Illuminate\Support\Facades\Storage;
 use App\Models\Services;
 
 /** Reads service content from the database for public pages. */
@@ -10,6 +11,17 @@ class ServiceRepository
     public function all(): array
     {
         $databaseServices = Services::query()->latest('id')->get()->map(static function (Services $service): array {
+            $image = $service->image;
+            $imageUrl = asset('images/services/catalog.jpg');
+
+            if ($image && str_starts_with($image, 'services/')) {
+                if (Storage::disk('public')->exists($image)) {
+                    $imageUrl = asset('storage/' . $image);
+                }
+            } elseif ($image && file_exists(public_path($image))) {
+                $imageUrl = asset($image);
+            }
+
             return [
                 'slug' => (string) $service->id,
                 'title' => $service->judul,
@@ -18,9 +30,7 @@ class ServiceRepository
                 'description' => $service->deskripsi,
                 'title_point' => $service->judul_point,
                 'point' => $service->point,
-                'image' => $service->image
-                    ? (str_starts_with($service->image, 'services/') ? asset('storage/' . $service->image) : asset($service->image))
-                    : asset('images/services/service-placeholder.svg'),
+                'image' => $imageUrl,
                 'highlights' => $service->content,
             ];
         })->all();
