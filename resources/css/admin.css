@@ -1978,3 +1978,453 @@
         flex: 1;
     }
 }
+
+/* =====================================
+   ADMIN MITRA PAGE
+===================================== */
+
+.admin-mitra-page {
+    width: 100%;
+}
+
+/* HEADER */
+
+.admin-mitra-page .admin-dashboard-header {
+    margin-bottom: 38px;
+}
+
+.admin-mitra-page .admin-dashboard-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.admin-mitra-page .admin-dashboard-title svg {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    color: #172b49;
+}
+
+.admin-mitra-page .admin-dashboard-title h1 {
+    margin: 0;
+    color: #111827;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: .07em;
+}
+
+.admin-mitra-page .admin-dashboard-header>p {
+    margin: 12px 0 0;
+    color: #8993a4;
+    font-size: .88rem;
+}
+
+/* SUCCESS MESSAGE */
+
+.admin-mitra-success {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+    padding: 13px 17px;
+    border: 1px solid #b7ebcb;
+    border-radius: 9px;
+    background: #edfcf3;
+    color: #168447;
+    font-size: .88rem;
+}
+
+.admin-mitra-success span {
+    display: grid;
+    width: 23px;
+    height: 23px;
+    place-items: center;
+    border-radius: 50%;
+    background: #20a45b;
+    color: #fff;
+    font-weight: 700;
+}
+
+/* SECTION HEADER */
+
+.admin-mitra-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 18px;
+}
+
+.admin-mitra-section-header .dashboard-section-title {
+    margin-bottom: 5px;
+}
+
+.admin-mitra-subtitle {
+    margin: 0;
+    color: #8993a4;
+    font-size: .83rem;
+}
+
+/* ADD BUTTON */
+
+.admin-mitra-add {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 17px;
+    border: none;
+    border-radius: 8px;
+    background: #e97e20;
+    color: #fff;
+    font-size: .83rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background .2s ease, transform .2s ease;
+}
+
+.admin-mitra-add:hover {
+    background: #d86e13;
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.admin-mitra-add span {
+    font-size: 1.1rem;
+}
+
+/* SUMMARY CARD */
+
+.admin-mitra-summary {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    min-height: 105px;
+    margin-bottom: 23px;
+    padding: 18px 25px;
+    overflow: hidden;
+    border: 1px solid #e3e8f0;
+    border-radius: 12px;
+    background: #fff;
+}
+
+.admin-mitra-summary-indicator {
+    width: 5px;
+    align-self: stretch;
+    min-height: 55px;
+    border-radius: 10px;
+    background: #e97e20;
+}
+
+.admin-mitra-summary-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.admin-mitra-summary-content span {
+    color: #8190aa;
+    font-size: .85rem;
+}
+
+.admin-mitra-summary-content strong {
+    color: #172b49;
+    font-size: 1.7rem;
+    line-height: 1.1;
+}
+
+.admin-mitra-summary-note {
+    margin-left: auto;
+    color: #8993a4;
+    font-size: .78rem;
+}
+
+/* TABLE */
+
+.admin-mitra-table-wrap {
+    overflow: hidden;
+    border: 1px solid #e3e8f0;
+    border-radius: 13px;
+    background: #fff;
+}
+
+.admin-mitra-table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 22px;
+    border-bottom: 1px solid #e9edf3;
+}
+
+.admin-mitra-table-header h3 {
+    margin: 0;
+    color: #17202d;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.admin-mitra-table-header span {
+    color: #8993a4;
+    font-size: .8rem;
+}
+
+.admin-mitra-table-scroll {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.admin-mitra-table {
+    width: 100%;
+    min-width: 700px;
+    border-collapse: collapse;
+}
+
+.admin-mitra-table th {
+    padding: 15px 18px;
+    background: #f7f9fc;
+    color: #8190aa;
+    font-size: .75rem;
+    font-weight: 600;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.admin-mitra-table td {
+    padding: 13px 18px;
+    border-top: 1px solid #edf0f5;
+    color: #64748b;
+    font-size: .82rem;
+    vertical-align: middle;
+}
+
+.admin-mitra-table tbody tr {
+    transition: background .2s ease;
+}
+
+.admin-mitra-table tbody tr:hover {
+    background: #fafbfe;
+}
+
+/* PARTNER NAME */
+
+.admin-mitra-name strong {
+    color: #172b49;
+    font-weight: 600;
+}
+
+/* IMAGE PREVIEW */
+
+.admin-mitra-image-preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 110px;
+    height: 62px;
+    padding: 7px;
+    overflow: hidden;
+    border: 1px solid #e8ecf2;
+    border-radius: 8px;
+    background: #ffffff;
+}
+
+.admin-mitra-image-preview img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+.admin-mitra-no-image {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    place-items: center;
+    background: #f7f9fc;
+    color: #aab4c2;
+}
+
+.admin-mitra-no-image svg {
+    width: 25px;
+    height: 25px;
+}
+
+/* IMAGE STATUS */
+
+.admin-mitra-status {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: .7rem;
+    font-weight: 600;
+}
+
+.admin-mitra-status.has-image {
+    background: #eaf8f0;
+    color: #168447;
+}
+
+.admin-mitra-status.no-image {
+    background: #fff2e6;
+    color: #d86e13;
+}
+
+/* ACTIONS */
+
+.admin-mitra-actions-cell {
+    text-align: center;
+}
+
+.admin-mitra-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+}
+
+.admin-mitra-actions form {
+    margin: 0;
+}
+
+.admin-mitra-edit,
+.admin-mitra-delete {
+    padding: 0;
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: .79rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.admin-mitra-edit {
+    color: #123f82;
+}
+
+.admin-mitra-edit:hover {
+    color: #e97e20;
+}
+
+.admin-mitra-delete {
+    color: #dc5151;
+}
+
+.admin-mitra-delete:hover {
+    color: #a82020;
+}
+
+/* EMPTY STATE */
+
+.admin-mitra-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 55px 25px !important;
+    text-align: center;
+}
+
+.admin-mitra-empty-icon {
+    display: grid;
+    width: 55px;
+    height: 55px;
+    place-items: center;
+    margin-bottom: 5px;
+    border-radius: 50%;
+    background: #fff2e6;
+    color: #e97e20;
+}
+
+.admin-mitra-empty-icon svg {
+    width: 26px;
+    height: 26px;
+}
+
+.admin-mitra-empty strong {
+    color: #172b49;
+    font-size: 1rem;
+}
+
+.admin-mitra-empty p {
+    max-width: 380px;
+    margin: 0 0 10px;
+    color: #8993a4;
+    font-size: .82rem;
+    line-height: 1.6;
+}
+
+/* PAGINATION */
+
+.admin-mitra-pagination {
+    display: flex;
+    justify-content: flex-end;
+    padding: 18px 22px;
+    border-top: 1px solid #edf0f5;
+}
+
+.admin-mitra-pagination nav {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.admin-mitra-pagination nav>div:last-child {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.admin-mitra-pagination a,
+.admin-mitra-pagination span[aria-current] span {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 34px;
+    min-height: 34px;
+    padding: 6px 10px;
+    border: 1px solid #e3e8f0;
+    border-radius: 6px;
+    background: #fff;
+    color: #536174;
+    font-size: .78rem;
+    text-decoration: none;
+}
+
+.admin-mitra-pagination span[aria-current] span {
+    border-color: #123f82;
+    background: #123f82;
+    color: #fff;
+}
+
+.admin-mitra-pagination a:hover {
+    border-color: #e97e20;
+    color: #e97e20;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 700px) {
+    .admin-mitra-section-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .admin-mitra-summary {
+        flex-wrap: wrap;
+        gap: 13px;
+        padding: 16px;
+    }
+
+    .admin-mitra-summary-note {
+        width: 100%;
+        margin-left: 18px;
+    }
+
+    .admin-mitra-pagination {
+        justify-content: center;
+        padding: 15px 10px;
+    }
+}
