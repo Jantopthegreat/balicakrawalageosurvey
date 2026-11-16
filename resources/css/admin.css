@@ -1662,14 +1662,90 @@
 }
 
 .admin-contact-pagination nav {
-    display: flex;
-    justify-content: flex-end;
+    width: 100%;
 }
 
-.admin-contact-pagination nav>div:last-child {
+/* sembunyikan versi mobile bawaan */
+.admin-contact-pagination nav > div:first-child {
+    display: none;
+}
+
+.admin-contact-pagination nav > div:last-child {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 5px;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* teks "Showing 1 to 5 of 9 results" */
+.admin-contact-pagination nav > div:last-child > div:first-child p {
+    margin: 0;
+    color: #8993a4;
+    font-size: .78rem;
+}
+
+/* wrapper deretan tombol */
+.admin-contact-pagination nav > div:last-child > div:last-child > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+}
+
+/* semua item: link, halaman aktif, panah nonaktif, titik "..." */
+.admin-contact-pagination nav a,
+.admin-contact-pagination nav span[aria-current] > span,
+.admin-contact-pagination nav span[aria-disabled] > span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    min-width: 36px;
+    height: 36px;
+    margin: 0 !important;       /* hilangkan -ml-px bawaan */
+    padding: 0 10px;
+    font-size: .82rem;
+    line-height: 1;
+    color: #475569;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px !important;
+    text-decoration: none;
+    transition: background-color .15s, border-color .15s, color .15s;
+}
+
+.admin-contact-pagination nav a:hover {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+    color: #0f172a;
+}
+
+.admin-contact-pagination nav a:focus-visible {
+    outline: 2px solid #2b5a88;
+    outline-offset: 2px;
+}
+
+/* halaman aktif */
+.admin-contact-pagination nav span[aria-current] > span {
+    background: #12408a;
+    border-color: #12408a;
+    color: #fff;
+    font-weight: 600;
+}
+
+/* panah nonaktif: kotak sama, hanya lebih pudar */
+.admin-contact-pagination nav span[aria-disabled] > span {
+    background: #f8fafc;
+    color: #cbd5e1;
+    cursor: not-allowed;
+}
+
+.admin-contact-pagination nav svg {
+    width: 1rem;
+    height: 1rem;
+    display: block;
 }
 
 .admin-contact-pagination a,
