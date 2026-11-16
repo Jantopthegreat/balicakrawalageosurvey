@@ -10,9 +10,9 @@
     <div class="admin-layout">
             {{-- SIDEBAR --}}
         @include('admin.partials.sidebar')
-        <main class="admin-main">
-            @yield('content')
-        </main>
+<main class="admin-main @yield('main-class')">
+    @yield('content')
+</main>
     </div>
 </body>
 </html>
