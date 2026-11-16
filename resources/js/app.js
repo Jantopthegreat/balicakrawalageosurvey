@@ -596,3 +596,95 @@ if (document.readyState === 'loading') {
 } else {
     initMitraCarousel();
 }
+
+
+/* =====================================
+   INDONESIAN WHATSAPP NUMBER FORMATTER
+===================================== */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    const phoneInputs = document.querySelectorAll(
+        '[data-phone-input]'
+    );
+
+    phoneInputs.forEach((input) => {
+
+        // Format Indonesian phone number
+        function formatPhone(value) {
+
+            let digits = value.replace(/\D/g, '');
+
+            // Remove country code if already present
+            if (digits.startsWith('62')) {
+                digits = digits.slice(2);
+            }
+
+            // Convert local prefix 0 to country code +62
+            else if (digits.startsWith('0')) {
+                digits = digits.slice(1);
+            }
+
+            // Maximum 11 digits after +62
+            digits = digits.slice(0, 11);
+
+            const groups = [];
+
+            if (digits.length > 0) {
+                groups.push(digits.slice(0, 3));
+            }
+
+            if (digits.length > 3) {
+                groups.push(digits.slice(3, 7));
+            }
+
+            if (digits.length > 7) {
+                groups.push(digits.slice(7, 11));
+            }
+
+            return '+62 ' + groups.join(' ');
+        }
+
+        // Format existing value when opening form
+        input.value = formatPhone(input.value);
+
+        // Format while typing
+        input.addEventListener('input', () => {
+            input.value = formatPhone(input.value);
+
+            // Keep cursor at the end
+            input.setSelectionRange(
+                input.value.length,
+                input.value.length
+            );
+        });
+
+        // Prevent deleting the +62 prefix
+        input.addEventListener('keydown', (event) => {
+
+            if (
+                event.key === 'Backspace' &&
+                input.selectionStart <= 4
+            ) {
+                event.preventDefault();
+            }
+
+            if (
+                event.key === 'Delete' &&
+                input.selectionStart < 4
+            ) {
+                event.preventDefault();
+            }
+
+        });
+
+        // Always restore prefix when empty
+        input.addEventListener('blur', () => {
+            if (!input.value.trim()) {
+                input.value = '+62 ';
+            }
+        });
+
+    });
+
+});
