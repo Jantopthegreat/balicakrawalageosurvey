@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#082d62">
     <title>@yield('title', 'Terjadi kesalahan') | {{ config('jst.brand.name') }}</title>
     <style>
-        :root { color-scheme: light; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #10233f; background: #f4f8fc; }
+        :root { color-scheme: light; font-family: "DM Sans", Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #10233f; background: #f4f8fc; }
         * { box-sizing: border-box; }
         body { min-height: 100vh; margin: 0; }
         .error-shell { display: grid; min-height: 100vh; place-items: center; padding: 28px 20px; background: radial-gradient(circle at 85% 12%, rgba(52, 141, 255, .16), transparent 34%), #f4f8fc; }
