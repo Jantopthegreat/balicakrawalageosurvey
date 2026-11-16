@@ -14,7 +14,7 @@ class AdminProductsController extends Controller
     public function index(): View
     {
         return view('admin.products.index', [
-            'products' => Product::latest()->paginate(10),
+            'products' => Product::latest()->paginate(5)->withQueryString(),
         ]);
     }
 

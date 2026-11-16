@@ -12,7 +12,7 @@ class AdminServicesController extends Controller
 {
     public function index(): View
     {
-        $services = Services::latest()->paginate(10);
+        $services = Services::latest()->paginate(5)->withQueryString();
 
         return view('admin.services.index', compact('services'));
     }
