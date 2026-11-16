@@ -129,11 +129,11 @@
 
                                         @if ($item->image)
 
-                                            <img
-                                                src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($item->image) }}"
-                                                alt="Logo {{ $item->nama }}"
-                                                loading="lazy"
-                                            >
+                                         <img
+    src="{{ asset('storage/' . $item->image) }}"
+    alt="Logo {{ $item->nama }}"
+    loading="lazy"
+>
 
                                         @else
 
