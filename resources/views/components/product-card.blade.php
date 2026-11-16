@@ -1,7 +1,7 @@
 
 @props(['product'])
 
-<article class="product-card">
+<article class="product-card {{ $product['availability'] === 'Tidak Tersedia' ? 'product-card-unavailable' : '' }}">
 
     <a
         class="product-image-wrap"
@@ -39,12 +39,13 @@
                 {{ $product['price_label'] ?? $product['availability'] }}
             </strong>
 
-            <a
-                class="product-order-link"
-                href="{{ route('store.show', $product['slug']) }}"
-            >
-                Lihat Detail <span aria-hidden="true">›</span>
-            </a>
+            @if ($product['availability'] === 'Tidak Tersedia')
+                <span class="product-order-link product-order-link-disabled">Tidak tersedia</span>
+            @else
+                <a class="product-order-link" href="{{ route('store.show', $product['slug']) }}">
+                    Lihat Detail <span aria-hidden="true">›</span>
+                </a>
+            @endif
 
         </div>
 

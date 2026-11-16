@@ -26,20 +26,22 @@ class AdminProductsController extends Controller
     }
 
     public function store(ProductRequest $request): RedirectResponse
-    {
-        $data = $request->validated();
-        $data['slug'] = $this->uniqueSlug($data['name']);
+{
+    $data = $request->safe()->except(['images', 'remove_images']);
+    $data['slug'] = $this->uniqueSlug($data['name']);
 
-        if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('products', 'public');
-        }
-
-        $product = Product::create($data);
-
-        return redirect()
-            ->route('admin.products.edit', $product)
-            ->with('status', 'Produk berhasil ditambahkan.');
+    $paths = $this->storeImages($request);
+    if ($paths) {
+        $data['images'] = $paths;
+        $data['image']  = $paths[0];
     }
+
+    $product = Product::create($data);
+
+    return redirect()
+        ->route('admin.products.edit', $product)
+        ->with('status', 'Produk berhasil ditambahkan.');
+}
 
     public function edit(Product $product): View
     {
@@ -50,31 +52,31 @@ class AdminProductsController extends Controller
     }
 
     public function update(ProductRequest $request, Product $product): RedirectResponse
-    {
-        $data = $request->validated();
-        $data['slug'] = $product->slug;
+{
+    $data = $request->safe()->except(['images', 'remove_images']);
+    $data['slug'] = $product->slug;
 
-        if ($request->hasFile('image')) {
-            if ($product->image) {
-                Storage::disk('public')->delete($product->image);
-            }
-            $data['image'] = $request->file('image')->store('products', 'public');
-        } else {
-            unset($data['image']);
-        }
+    $current = $this->currentImages($product);
+    $toRemove = array_intersect($current, $request->input('remove_images', []));
 
-        $product->update($data);
+    $kept = array_values(array_diff($current, $toRemove));
+    $all  = array_values([...$kept, ...$this->storeImages($request)]);
 
-        return redirect()
-            ->route('admin.products.index')
-            ->with('status', 'Produk berhasil diperbarui.');
-    }
+    $this->deleteFiles($toRemove);
+
+    $data['images'] = $all;
+    $data['image']  = $all[0] ?? null;
+
+    $product->update($data);
+
+    return redirect()
+        ->route('admin.products.index')
+        ->with('status', 'Produk berhasil diperbarui.');
+}
 
     public function destroy(Product $product): RedirectResponse
     {
-        if ($product->image) {
-            Storage::disk('public')->delete($product->image);
-        }
+        $this->deleteProductImages($product);
 
         $product->delete();
 
@@ -105,4 +107,35 @@ class AdminProductsController extends Controller
             ->pluck('category')
             ->all();
     }
+
+    private function deleteProductImages(Product $product): void
+    {
+        $paths = array_unique(array_filter([
+            $product->image,
+            ...($product->images ?? []),
+        ]));
+
+        Storage::disk('public')->delete($paths);
+    }
+
+private function storeImages(ProductRequest $request): array
+{
+    return collect($request->file('images', []))
+        ->map(fn ($image): string => $image->store('products', 'public'))
+        ->all();
+}
+
+private function currentImages(Product $product): array
+{
+    return array_values(array_unique(array_filter(
+        $product->images ?: ($product->image ? [$product->image] : [])
+    )));
+}
+
+private function deleteFiles(array $paths): void
+{
+    $paths = array_filter($paths, fn ($p) => str_starts_with($p, 'products/'));
+
+    Storage::disk('public')->delete($paths);
+}
 }

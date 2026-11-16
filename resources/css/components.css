@@ -38,7 +38,10 @@
 .product-image-wrap { display: block; }
 .product-image-wrap img { width: 100%; aspect-ratio: 1 / .88; object-fit: cover; }
 .product-image-badge { top: 14px; bottom: auto; background: var(--color-blue); }
+.product-card-unavailable { filter: grayscale(1); opacity: .68; }
+.product-card-unavailable:hover { transform: none; box-shadow: 0 6px 23px rgba(20,38,65,.035); }
 .product-card-bottom { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--color-border); }
+.product-order-link-disabled { color: #78818d; cursor: not-allowed; }
 .availability-label { color: #4c6756; font-size: .76rem; font-weight: 750; }
 .icon-link { display: grid; width: 36px; height: 36px; flex-shrink: 0; place-items: center; border-radius: 50%; color: #fff; background: var(--color-blue); }
 .icon-link:hover { background: var(--color-blue-dark); }

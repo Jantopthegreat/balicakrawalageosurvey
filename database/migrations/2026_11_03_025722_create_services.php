@@ -14,13 +14,8 @@ return new class extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
-            $table->string('sub_judul');
-            $table->string('judul_deskripsi');
             $table->text('deskripsi');
-            $table->string('judul_point');
-            $table->text('point');
             $table->string('image')->nullable();
-            $table->json('content');
             $table->timestamps();
         });
     }

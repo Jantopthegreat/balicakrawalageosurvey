@@ -16,8 +16,8 @@ return new class extends Migration
             $table->enum('type', ['rent', 'sale']);
             $table->text('description');
             $table->string('image')->nullable();
-            $table->string('availability')->default('Hubungi Kami');
-            $table->string('price_label')->default('Hubungi Kami');
+            $table->string('availability')->default('Tersedia');
+            $table->string('price_label')->default('Harga');
             $table->timestamps();
         });
     }

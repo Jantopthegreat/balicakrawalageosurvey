@@ -9,17 +9,14 @@ class ProductRepository
     public function all(): array
     {
         return Product::query()->latest('id')->get()->map(
-            static fn (Product $product): array => [
+            fn (Product $product): array => [
                 'slug' => $product->slug,
                 'name' => $product->name,
                 'category' => $product->category,
                 'type' => $product->type,
                 'description' => $product->description,
-                'image' => $product->image
-                    ? (str_starts_with($product->image, 'products/')
-                        ? asset('storage/' . $product->image)
-                        : asset($product->image))
-                    : asset('images/products/product-placeholder.svg'),
+                'images' => $images = $this->imageUrls($product),
+                'image' => $images[0],
                 'availability' => $product->availability,
                 'price_label' => $product->price_label,
             ],
@@ -35,5 +32,21 @@ class ProductRepository
         }
 
         return null;
+    }
+
+    private function imageUrls(Product $product): array
+    {
+        $paths = $product->images ?: ($product->image ? [$product->image] : []);
+
+        if ($paths === []) {
+            return [asset('images/products/product-placeholder.svg')];
+        }
+
+        return array_map(
+            static fn (string $path): string => str_starts_with($path, 'products/')
+                ? asset('storage/' . $path)
+                : asset($path),
+            $paths,
+        );
     }
 }
