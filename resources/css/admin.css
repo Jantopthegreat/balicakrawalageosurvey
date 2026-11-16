@@ -1897,6 +1897,7 @@
 /* INPUTS */
 
 .admin-contact-form-field input,
+.admin-contact-form-field select,
 .admin-contact-form-field textarea {
     width: 100%;
     min-height: 47px;
@@ -1920,12 +1921,22 @@
     line-height: 1.6;
 }
 
+.admin-contact-form-field input[type="file"] {
+    padding: 10px 12px;
+    background: #fff;
+}
+
+.admin-contact-form-field select {
+    appearance: auto;
+}
+
 .admin-contact-form-field input::placeholder,
 .admin-contact-form-field textarea::placeholder {
     color: #a3adbb;
 }
 
 .admin-contact-form-field input:focus,
+.admin-contact-form-field select:focus,
 .admin-contact-form-field textarea:focus {
     border-color: #e97e20;
     background: #ffffff;
@@ -1941,6 +1952,7 @@
 /* FIELD ERROR */
 
 .admin-contact-form-field.has-error input,
+.admin-contact-form-field.has-error select,
 .admin-contact-form-field.has-error textarea {
     border-color: #dc5151;
     background: #fffafa;

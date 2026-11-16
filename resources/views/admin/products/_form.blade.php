@@ -1,18 +1,18 @@
 @if ($errors->any())
-    <div class="admin-alert" role="alert">
-        <strong>Produk belum bisa disimpan</strong>
-        <ul>@foreach ($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul>
+    <div class="admin-contact-errors" role="alert">
+        <div class="admin-contact-error-icon">!</div>
+        <div><strong>Produk belum bisa disimpan</strong><ul>@foreach ($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul></div>
     </div>
 @endif
 
-<div class="admin-editor-grid">
-    <div class="admin-editor-field @error('name') has-error @enderror">
-        <label for="name">Nama produk</label>
-        <input id="name" name="name" type="text" value="{{ old('name', $product->name ?? '') }}" required>
-        @error('name') <p class="admin-field-error">{{ $message }}</p> @enderror
+<div class="admin-contact-form-grid">
+    <div class="admin-contact-form-field @error('name') has-error @enderror">
+        <label for="name">Nama Produk <span>*</span></label>
+        <input id="name" name="name" type="text" value="{{ old('name', $product->name ?? '') }}" placeholder="Masukkan nama produk" required>
+        @error('name') <p class="admin-contact-field-error">{{ $message }}</p> @enderror
     </div>
-    <div class="admin-editor-field @error('category') has-error @enderror">
-        <label for="category">Kategori</label>
+    <div class="admin-contact-form-field @error('category') has-error @enderror">
+        <label for="category">Kategori <span>*</span></label>
         @php
             $selectedCategory = old('category', $product->category ?? '');
             $isNewCategory = $selectedCategory !== '' && !in_array($selectedCategory, $categories ?? [], true);
@@ -35,18 +35,18 @@
             @required($isNewCategory)
         >
         <small>Pilih kategori yang tersedia atau tambah kategori baru.</small>
-        @error('category') <p class="admin-field-error">{{ $message }}</p> @enderror
+        @error('category') <p class="admin-contact-field-error">{{ $message }}</p> @enderror
     </div>
-    <div class="admin-editor-field @error('type') has-error @enderror">
-        <label for="type">Jenis transaksi</label>
+    <div class="admin-contact-form-field @error('type') has-error @enderror">
+        <label for="type">Jenis Transaksi <span>*</span></label>
         <select id="type" name="type" required>
             <option value="rent" @selected(old('type', $product->type ?? '') === 'rent')>Sewa</option>
             <option value="sale" @selected(old('type', $product->type ?? '') === 'sale')>Jual</option>
         </select>
-        @error('type') <p class="admin-field-error">{{ $message }}</p> @enderror
+        @error('type') <p class="admin-contact-field-error">{{ $message }}</p> @enderror
     </div>
-    <div class="admin-editor-field @error('availability') has-error @enderror">
-    <label for="availability">Ketersediaan</label>
+    <div class="admin-contact-form-field @error('availability') has-error @enderror">
+    <label for="availability">Ketersediaan <span>*</span></label>
     @php
         $selectedAvailability = old('availability', $product->availability ?? 'Tersedia');
     @endphp
@@ -54,20 +54,20 @@
         <option value="Tersedia" @selected($selectedAvailability === 'Tersedia')>Tersedia</option>
         <option value="Tidak Tersedia" @selected($selectedAvailability === 'Tidak Tersedia')>Tidak Tersedia</option>
     </select>
-    @error('availability') <p class="admin-field-error">{{ $message }}</p> @enderror
+    @error('availability') <p class="admin-contact-field-error">{{ $message }}</p> @enderror
 </div>
-    <div class="admin-editor-field @error('price_label') has-error @enderror">
-        <label for="price_label">Label harga</label>
-        <input id="price_label" name="price_label" type="text" value="{{ old('price_label', $product->price_label ?? 'Harga') }}" required>
-        @error('price_label') <p class="admin-field-error">{{ $message }}</p> @enderror
+    <div class="admin-contact-form-field @error('price_label') has-error @enderror">
+        <label for="price_label">Label Harga <span>*</span></label>
+        <input id="price_label" name="price_label" type="text" value="{{ old('price_label', $product->price_label ?? 'Harga') }}" placeholder="Contoh: Hubungi Kami" required>
+        @error('price_label') <p class="admin-contact-field-error">{{ $message }}</p> @enderror
     </div>
-    <div class="admin-editor-field admin-editor-field-wide @error('description') has-error @enderror">
-        <label for="description">Deskripsi</label>
-        <textarea id="description" name="description" rows="6" required>{{ old('description', $product->description ?? '') }}</textarea>
-        @error('description') <p class="admin-field-error">{{ $message }}</p> @enderror
+    <div class="admin-contact-form-field @error('description') has-error @enderror">
+        <label for="description">Deskripsi <span>*</span></label>
+        <textarea id="description" name="description" rows="3" placeholder="Jelaskan produk" required>{{ old('description', $product->description ?? '') }}</textarea>
+        @error('description') <p class="admin-contact-field-error">{{ $message }}</p> @enderror
     </div>
-    <div class="admin-editor-field admin-editor-field-wide @error('images') has-error @enderror @error('images.*') has-error @enderror">
-    <label for="images">Gambar produk <span>(opsional, maksimal 10 gambar, masing-masing 2 MB)</span></label>
+    <div class="admin-contact-form-field @error('images') has-error @enderror @error('images.*') has-error @enderror">
+    <label for="images">Gambar Produk <small>(opsional, maksimal 10 gambar, masing-masing 2 MB)</small></label>
     <input id="images" name="images[]" type="file"
         accept="image/jpeg,image/png,image/webp" multiple
         data-existing="{{ isset($product) ? count($product->images ?: ($product->image ? [$product->image] : [])) : 0 }}">
@@ -93,14 +93,14 @@
         @endif
     @endif
 
-    @error('images') <p class="admin-field-error">{{ $message }}</p> @enderror
-    @error('images.*') <p class="admin-field-error">{{ $message }}</p> @enderror
+    @error('images') <p class="admin-contact-field-error">{{ $message }}</p> @enderror
+    @error('images.*') <p class="admin-contact-field-error">{{ $message }}</p> @enderror
 </div>
 </div>
 
-<div class="admin-editor-actions">
-    <a class="admin-back-link" href="{{ route('admin.products.index') }}">Batal</a>
-    <button class="admin-button" type="submit">Simpan produk</button>
+<div class="admin-contact-form-footer">
+    <a href="{{ route('admin.products.index') }}" class="admin-contact-cancel">Batal</a>
+    <button class="admin-contact-submit" type="submit"><span>Simpan Produk</span><span aria-hidden="true">→</span></button>
 </div>
 
 <script>
