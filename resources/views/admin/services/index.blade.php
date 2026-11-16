@@ -20,12 +20,12 @@
     <div class="admin-list-summary"><span>{{ $services->total() }} layanan</span></div>
     <section class="admin-table-wrap" aria-label="Daftar layanan">
         <table class="admin-table">
-            <thead><tr><th>Judul</th><th>Sub judul</th><th>Dibuat</th><th class="admin-table-actions">Aksi</th></tr></thead>
+            <thead><tr><th>Judul</th><th>Deskripsi</th><th>Dibuat</th><th class="admin-table-actions">Aksi</th></tr></thead>
             <tbody>
                 @forelse ($services as $service)
                     <tr>
                         <td class="admin-cell-main"><strong>{{ $service->judul }}</strong></td>
-                        <td data-label="Sub judul">{{ $service->sub_judul }}</td>
+                        <td data-label="Deskripsi">{{ $service->deskripsi }}</td>
                         <td data-label="Dibuat">{{ $service->created_at->format('d M Y') }}</td>
                         <td class="admin-table-actions">
                             <a class="admin-action-link" href="{{ route('admin.services.edit', $service) }}">Edit</a>

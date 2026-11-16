@@ -25,13 +25,8 @@ class ServiceRepository
             return [
                 'slug' => (string) $service->id,
                 'title' => $service->judul,
-                'short_description' => $service->sub_judul,
-                'title_description' => $service->judul_deskripsi,
                 'description' => $service->deskripsi,
-                'title_point' => $service->judul_point,
-                'point' => $service->point,
                 'image' => $imageUrl,
-                'highlights' => $service->content,
             ];
         })->all();
 

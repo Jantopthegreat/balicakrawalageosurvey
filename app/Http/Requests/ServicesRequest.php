@@ -26,12 +26,7 @@ class ServicesRequest extends FormRequest
 
         $this->merge([
             'judul'           => trim((string) $this->input('judul')),
-            'sub_judul'       => trim((string) $this->input('sub_judul')),
-            'judul_deskripsi' => trim((string) $this->input('judul_deskripsi')),
             'deskripsi'       => trim((string) $this->input('deskripsi')),
-            'judul_point'     => trim((string) $this->input('judul_point')),
-            'point'           => trim((string) $this->input('point')),
-            'content'         => array_values(array_filter(array_map('trim', $content), static fn (string $item): bool => $item !== '')),
         ]);
     }
 
@@ -39,14 +34,8 @@ class ServicesRequest extends FormRequest
     {
         return [
             'judul'           => ['required', 'string', 'max:255'],
-            'sub_judul'       => ['required', 'string', 'max:255'],
-            'judul_deskripsi' => ['required', 'string', 'max:255'],
             'deskripsi'       => ['required', 'string', 'max:5000'],
-            'judul_point'     => ['required', 'string', 'max:255'],
-            'point'           => ['required', 'string', 'max:5000'],
-            'image'           => ['nullable', 'file', 'mimes:jpg,jpeg,png,webp', 'max:8192'],
-            'content'         => ['required', 'array'],
-            'content.*'       => ['nullable'],
+            'image'           => ['nullable', 'file', 'mimes:jpg,jpeg,png,webp', 'max:8192']
         ];
     }
 
@@ -54,13 +43,8 @@ class ServicesRequest extends FormRequest
     {
         return [
             'judul'           => 'judul',
-            'sub_judul'       => 'sub judul',
-            'judul_deskripsi' => 'judul deskripsi',
             'deskripsi'       => 'deskripsi',
-            'judul_point'     => 'judul point',
-            'point'           => 'point',
             'image'           => 'gambar',
-            'content'         => 'konten',
         ];
     }
 
