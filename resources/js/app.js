@@ -393,3 +393,206 @@ if (document.readyState === 'loading') {
 } else {
     initDocumentationCarousels();
 }
+
+
+
+/* =====================================
+   MITRA BATCH CAROUSEL
+===================================== */
+
+function initMitraCarousel() {
+    const grid = document.querySelector('[data-mitra-carousel]');
+
+    if (!grid || grid.dataset.initialized === 'true') {
+        return;
+    }
+
+    const items = Array.from(
+        grid.querySelectorAll('[data-mitra-item]')
+    );
+
+    if (items.length === 0) return;
+
+    const batchSize = 6;
+
+    const enterStagger = 100;
+    const exitStagger = 80;
+
+    const transitionDuration = 650;
+    const displayDuration = 4500;
+
+    const prefersReducedMotion = window.matchMedia(
+        '(prefers-reduced-motion: reduce)'
+    ).matches;
+
+    /* =====================================
+       REDUCED MOTION
+    ===================================== */
+
+    if (prefersReducedMotion) {
+        items.forEach(item => {
+            item.hidden = false;
+            item.style.opacity = '1';
+            item.style.transform = 'none';
+        });
+
+        return;
+    }
+
+    /* =====================================
+       INITIALIZATION
+    ===================================== */
+
+    grid.dataset.initialized = 'true';
+    grid.classList.add('is-carousel-ready');
+
+    let currentBatch = 0;
+    let started = false;
+
+    const totalBatches = Math.ceil(
+        items.length / batchSize
+    );
+
+    /* =====================================
+       GET CURRENT BATCH
+    ===================================== */
+
+    function getBatch(batchIndex) {
+        const startIndex = batchIndex * batchSize;
+
+        return items.slice(
+            startIndex,
+            startIndex + batchSize
+        );
+    }
+
+    /* =====================================
+       SHOW BATCH
+    ===================================== */
+
+    function showBatch() {
+        const batch = getBatch(currentBatch);
+
+        // Reset all items
+        items.forEach(item => {
+            item.classList.remove(
+                'is-visible',
+                'is-exiting'
+            );
+
+            item.hidden = true;
+            item.style.transitionDelay = '0ms';
+        });
+
+        // Prepare active batch
+        batch.forEach((item, index) => {
+            item.hidden = false;
+
+            item.style.transitionDelay =
+                `${index * enterStagger}ms`;
+        });
+
+        // Trigger entrance animation
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                batch.forEach(item => {
+                    item.classList.add('is-visible');
+                });
+            });
+        });
+
+        // Calculate entrance duration
+        const enterDuration =
+            transitionDuration +
+            (batch.length - 1) * enterStagger;
+
+        // Keep batch visible before exiting
+        setTimeout(() => {
+            hideBatch(batch);
+        }, enterDuration + displayDuration);
+    }
+
+    /* =====================================
+       HIDE BATCH
+    ===================================== */
+
+    function hideBatch(batch) {
+        batch.forEach((item, index) => {
+            item.style.transitionDelay =
+                `${index * exitStagger}ms`;
+
+            item.classList.remove('is-visible');
+            item.classList.add('is-exiting');
+        });
+
+        const exitDuration =
+            transitionDuration +
+            (batch.length - 1) * exitStagger;
+
+        setTimeout(() => {
+            batch.forEach(item => {
+                item.hidden = true;
+
+                item.classList.remove('is-exiting');
+
+                item.style.transitionDelay = '0ms';
+            });
+
+            // Move to next batch
+            currentBatch = (currentBatch + 1) % totalBatches;
+
+            showBatch();
+
+        }, exitDuration);
+    }
+
+    /* =====================================
+       START ANIMATION
+    ===================================== */
+
+    function startCarousel() {
+        if (started) return;
+
+        started = true;
+
+        showBatch();
+    }
+
+    /* =====================================
+       INTERSECTION OBSERVER
+    ===================================== */
+
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(
+            entries => {
+                if (entries.some(entry => entry.isIntersecting)) {
+                    startCarousel();
+
+                    observer.disconnect();
+                }
+            },
+            {
+                threshold: 0.05
+            }
+        );
+
+        observer.observe(grid);
+
+    } else {
+        startCarousel();
+    }
+}
+
+/* =====================================
+   INITIALIZE
+===================================== */
+
+if (document.readyState === 'loading') {
+    document.addEventListener(
+        'DOMContentLoaded',
+        initMitraCarousel,
+        { once: true }
+    );
+} else {
+    initMitraCarousel();
+}

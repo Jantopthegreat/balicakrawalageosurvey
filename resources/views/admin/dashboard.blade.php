@@ -1,61 +1,242 @@
+
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard Admin | {{ config('jst.brand.name') }}</title>
+
+    <title>Dashboard Admin | {{ config('cakrawala.brand.name') }}</title>
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="admin-body">
-    <div class="admin-layout">
-        <aside class="admin-sidebar">
-            <a class="admin-brand" href="{{ route('admin.dashboard') }}">Dhurva<span>Tech</span></a>
-            <p class="admin-sidebar-label">Workspace</p>
-            <a class="admin-nav-link admin-nav-link-active" href="{{ route('admin.dashboard') }}">Dashboard</a>
-            <a class="admin-nav-link" href="{{ route('admin.contact.index') }}">Kontak</a>
-            <a class="admin-nav-link" href="{{ route('admin.services.index') }}">Layanan</a>
-            <a class="admin-nav-link" href="{{ route('admin.products.index') }}">Katalog</a>
-            <a class="admin-nav-link" href="{{ route('admin.mitra.index') }}">Mitra</a>
-            <a class="admin-nav-link" href="{{ route('home') }}">Lihat website</a>
-            <form method="POST" action="{{ route('admin.logout') }}">
-                @csrf
-                <button class="admin-nav-link admin-logout" type="submit">Keluar</button>
-            </form>
-        </aside>
 
-        <main class="admin-main">
-            <header class="admin-header">
-                <div>
-                    <p class="admin-kicker">Overview</p>
-                    <h1>Selamat datang, {{ auth()->user()->name }}</h1>
+<body class="admin-body">
+
+    <div class="admin-layout">
+
+        {{-- SIDEBAR --}}
+        @include('admin.partials.sidebar')
+
+
+        {{-- MAIN CONTENT --}}
+        <main class="admin-main admin-dashboard">
+
+            {{-- PAGE HEADER --}}
+            <header class="admin-dashboard-header">
+                <div class="admin-dashboard-title">
+                    <svg viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="7" height="7" rx="1"/>
+                        <rect x="14" y="3" width="7" height="7" rx="1"/>
+                        <rect x="3" y="14" width="7" height="7" rx="1"/>
+                        <rect x="14" y="14" width="7" height="7" rx="1"/>
+                    </svg>
+
+                    <h1>Dashboard</h1>
                 </div>
-                <span class="admin-user-badge">Admin</span>
+
+                <p>
+                    Selamat datang, {{ auth()->user()->name }}
+                </p>
             </header>
 
-            <section class="admin-stats" aria-label="Ringkasan website">
-                <article class="admin-stat-card">
-                    <span class="admin-stat-label">Total akun pengguna</span>
-                    <strong>{{ $userCount }}</strong>
-                    <span class="admin-stat-note">Terdaftar di sistem</span>
+
+            {{-- TOTAL PRODUCTS --}}
+            <section class="dashboard-section">
+
+                <h2 class="dashboard-section-title">
+                    Total Produk
+                </h2>
+
+                <article class="dashboard-total-card">
+
+                    <div class="dashboard-card-indicator"></div>
+
+                    <div class="dashboard-card-content">
+                        <span>Total Produk</span>
+
+                        <strong>{{ $totalProducts }}</strong>
+                    </div>
+
+                    <a href="{{ route('admin.products.index') }}"
+                        class="dashboard-card-link">
+                        Kelola Produk
+                        <span>→</span>
+                    </a>
+
                 </article>
-                <article class="admin-stat-card admin-stat-card-accent">
-                    <span class="admin-stat-label">Status website</span>
-                    <strong>Aktif</strong>
-                    <span class="admin-stat-note">Semua layanan berjalan</span>
-                </article>
-                <article class="admin-stat-card">
-                    <span class="admin-stat-label">Akses terakhir</span>
-                    <strong>Hari ini</strong>
-                    <span class="admin-stat-note">Sesi admin aktif</span>
-                </article>
+
             </section>
 
-            <section class="admin-welcome-panel">
-                <p class="admin-kicker">Admin dashboard</p>
-                <h2>Ruang kerja admin siap digunakan.</h2>
-                <p>Gunakan panel ini sebagai pusat pengelolaan website. Modul konten dapat ditambahkan di area ini sesuai kebutuhan operasional.</p>
+
+            {{-- TOTAL BY TYPE --}}
+            <section class="dashboard-section">
+
+                <h2 class="dashboard-section-title">
+                    Total Per Jenis
+                </h2>
+
+                <div class="dashboard-type-grid">
+
+                    <article class="dashboard-type-card">
+
+                        <div class="dashboard-card-indicator"></div>
+
+                        <div>
+                            <span>Produk Jual</span>
+                            <strong>{{ $typeCounts['jual'] }}</strong>
+                        </div>
+
+                    </article>
+
+
+                    <article class="dashboard-type-card">
+
+                        <div class="dashboard-card-indicator"></div>
+
+                        <div>
+                            <span>Produk Sewa</span>
+                            <strong>{{ $typeCounts['sewa'] }}</strong>
+                        </div>
+
+                    </article>
+
+                </div>
+
             </section>
-        </main>
+
+
+            {{-- TOTAL BY CATEGORY --}}
+            <section class="dashboard-section">
+
+                <h2 class="dashboard-section-title">
+                    Total Per Kategori
+                </h2>
+
+                <div class="dashboard-category-grid">
+
+                    @forelse ($categoryCounts as $category)
+
+                        <article class="dashboard-category-card">
+
+                            <div class="dashboard-category-indicator"></div>
+
+                            <div class="dashboard-category-content">
+
+                                <span>{{ $category->category }}</span>
+
+                                <strong>{{ $category->total }}</strong>
+
+                            </div>
+
+                            <a href="{{ route('admin.products.index') }}"
+                                class="dashboard-category-link">
+                                Lihat Produk →
+                            </a>
+
+                        </article>
+
+                    @empty
+
+                        <div class="dashboard-empty">
+                            Belum ada kategori produk.
+                        </div>
+
+                    @endforelse
+
+                </div>
+
+            </section>
+
+
+
+
+{{-- PRODUCT PREVIEW --}}
+<section class="dashboard-section dashboard-preview">
+
+    <div class="dashboard-preview-header">
+        <div>
+            <h2 class="dashboard-section-title">
+                Preview
+            </h2>
+        </div>
+
+        <a href="{{ route('admin.products.index') }}"
+            class="dashboard-preview-link">
+            Lihat Semua Produk →
+        </a>
     </div>
+
+    <div class="dashboard-product-showcase">
+
+        <div class="dashboard-product-grid">
+
+            @forelse ($previewProducts as $product)
+
+                <article class="dashboard-product-card">
+
+                    {{-- IMAGE --}}
+                    <div class="dashboard-product-image">
+
+                        @if ($product->image)
+                            <img
+                                src="{{ \Illuminate\Support\Facades\Storage::url($product->image) }}"
+                                alt="{{ $product->name }}"
+                                loading="lazy"
+                            >
+                        @else
+                            <div class="dashboard-product-no-image">
+                                Tidak ada gambar
+                            </div>
+                        @endif
+
+                        {{-- TYPE BADGE --}}
+                        <span class="dashboard-product-badge">
+                            {{ $product->type }}
+                        </span>
+
+                    </div>
+
+                    {{-- PRODUCT DETAILS --}}
+                    <div class="dashboard-product-info">
+
+                        <h3>{{ $product->name }}</h3>
+
+                        <span class="dashboard-product-category">
+                            Jenis: {{ $product->category }}
+                        </span>
+
+                        <p class="dashboard-product-description">
+                            {{ $product->description }}
+                        </p>
+
+                        <div class="dashboard-product-price">
+                            Rp {{ $product->price_label }}
+                        </div>
+
+                    </div>
+
+                </article>
+
+            @empty
+
+                <div class="dashboard-product-empty">
+                    Belum ada produk yang tersedia.
+                </div>
+
+            @endforelse
+
+        </div>
+
+    </div>
+
+</section>
+
+        </main>
+
+    </div>
+
 </body>
 </html>
