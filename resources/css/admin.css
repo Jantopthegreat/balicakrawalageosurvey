@@ -9,6 +9,20 @@
     color: var(--color-ink);
 }
 
+.admin-image-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.admin-image-preview-grid .admin-image-preview {
+    width: 100%;
+    height: 120px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
 /* Main Layout */
 
 .admin-login-page {
@@ -1308,4 +1322,135 @@
     .dashboard-product-image {
         height: 180px;
     }
+}
+
+
+.admin-editor-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 24px;
+    align-items: start; /* mencegah field melar mengikuti kolom sebelah */
+}
+
+.admin-editor-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.admin-editor-field-wide { grid-column: 1 / -1; }
+
+.admin-editor-field label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.admin-editor-field input[type="text"],
+.admin-editor-field select,
+.admin-editor-field textarea {
+    width: 100%;
+    box-sizing: border-box;
+    height: 46px;
+    padding: 0 14px;
+    font: inherit;
+    font-size: 15px;
+    color: #111827;
+    background-color: #fff;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    outline: none;
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.admin-editor-field textarea {
+    height: auto;
+    padding: 12px 14px;
+    resize: vertical;
+}
+
+.admin-editor-field input:focus,
+.admin-editor-field select:focus,
+.admin-editor-field textarea:focus {
+    border-color: #2b5a88;
+    box-shadow: 0 0 0 3px rgba(43, 90, 136, .15);
+}
+
+/* Dropdown custom */
+.admin-editor-field select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-right: 42px;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 16px;
+}
+
+.admin-editor-field select:invalid,
+.admin-editor-field select option[value=""] { color: #9ca3af; }
+.admin-editor-field select option { color: #111827; }
+
+.admin-editor-field input:disabled { background: #f3f4f6; cursor: not-allowed; }
+.admin-editor-field input[hidden] { display: none; }
+
+.admin-editor-field small { font-size: 12px; color: #6b7280; }
+
+.admin-editor-field.has-error input,
+.admin-editor-field.has-error select,
+.admin-editor-field.has-error textarea { border-color: #dc2626; }
+
+/* Upload gambar */
+.admin-editor-field input[type="file"] {
+    height: auto;
+    padding: 14px;
+    background: #f9fafb;
+    border: 1px dashed #cbd5e1;
+}
+
+.admin-image-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 12px;
+}
+.admin-image-preview-grid:empty { display: none; }
+
+.admin-image-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 6px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    background: #fff;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.admin-image-preview {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+}
+
+.admin-image-item button {
+    border: 0;
+    padding: 6px;
+    border-radius: 6px;
+    background: #fee2e2;
+    color: #b91c1c;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+/* Bar aksi tidak menimpa konten */
+.admin-editor-actions { margin-top: 28px; }
+
+@media (max-width: 700px) {
+    .admin-editor-grid { grid-template-columns: 1fr; }
 }

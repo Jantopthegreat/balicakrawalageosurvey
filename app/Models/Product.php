@@ -13,7 +13,15 @@ class Product extends Model
         'type',
         'description',
         'image',
+        'images',
         'availability',
         'price_label',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'images' => 'array',
+        ];
+    }
 }

@@ -23,7 +23,7 @@
 
             @forelse($catalogProducts as $product)
 
-                <article class="service-catalog-card">
+                <article class="service-catalog-card {{ $product['availability'] === 'Tidak Tersedia' ? 'service-catalog-card-unavailable' : '' }}">
 
                     <a
                         href="{{ route('store.show', $product['slug']) }}"
@@ -57,18 +57,17 @@
                         </p>
 
                         <strong class="service-catalog-price">
-                            {{ $product['price_label'] ?? $product['availability'] ?? 'Hubungi Kami' }}
+                            {{ $product['price_label'] ?? $product['availability'] ?? 'Harga' }}
                         </strong>
 
-                        <a
-                            href="https://wa.me/{{ $whatsappNumber }}?text={{ rawurlencode('Halo, saya tertarik dengan produk ' . $product['name'] . '. Mohon informasi lebih lanjut.') }}"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="service-catalog-order"
-                        >
-                            Order Here
-                            <span aria-hidden="true">›</span>
-                        </a>
+                        @if ($product['availability'] === 'Tidak Tersedia')
+                            <span class="service-catalog-order service-catalog-order-disabled">Tidak tersedia</span>
+                        @else
+                            <a href="https://wa.me/{{ $whatsappNumber }}?text={{ rawurlencode('Halo, saya tertarik dengan produk ' . $product['name'] . '. Mohon informasi lebih lanjut.') }}" target="_blank" rel="noopener noreferrer" class="service-catalog-order">
+                                Order Here
+                                <span aria-hidden="true">›</span>
+                            </a>
+                        @endif
 
                     </div>
 

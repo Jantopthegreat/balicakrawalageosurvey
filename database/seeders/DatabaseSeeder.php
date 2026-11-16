@@ -53,8 +53,8 @@ class DatabaseSeeder extends Seeder
                 'type' => $type,
                 'description' => $description,
                 'image' => $image,
-                'availability' => 'Hubungi Kami',
-                'price_label' => 'Hubungi Kami',
+                'availability' => 'Tersedia',
+                'price_label' => 'Harga',
             ]);
         }
 
