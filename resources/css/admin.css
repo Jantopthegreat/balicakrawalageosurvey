@@ -2662,6 +2662,286 @@
     .admin-editor-grid { grid-template-columns: 1fr; }
 }
 
+
+.product-image-manager { margin-top: 14px; }
+.product-image-manager [hidden] { display: none !important; }
+
+.product-image-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    min-height: 40px;
+    margin-bottom: 12px;
+}
+
+.product-image-hint { font-size: 12px; color: #8993a4; }
+
+.product-image-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 6px 6px 14px;
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+    border-radius: 10px;
+}
+
+.product-image-count { font-size: 13px; font-weight: 600; color: #9a3412; }
+
+.product-image-delete {
+    border: 0;
+    padding: 8px 14px;
+    border-radius: 8px;
+    background: #dc2626;
+    color: #fff;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color .15s;
+}
+.product-image-delete:hover { background: #b91c1c; }
+
+.product-image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 14px;
+}
+
+.product-image-card {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.product-image-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity .15s, filter .15s;
+}
+
+.product-image-card:hover { border-color: #cbd5e1; }
+
+.product-image-card.is-selected {
+    border-color: #ea8020;
+    box-shadow: 0 0 0 3px rgba(234, 128, 32, .2);
+}
+
+/* checkbox custom di pojok kiri atas */
+.product-image-select {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 2;
+    margin: 0;
+    cursor: pointer;
+}
+
+.product-image-select input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.product-image-box {
+    display: grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    border: 2px solid #fff;
+    border-radius: 6px;
+    background: rgba(15, 23, 42, .45);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+    transition: background-color .15s, border-color .15s;
+}
+
+.product-image-box::after {
+    content: "";
+    width: 10px;
+    height: 5px;
+    margin-top: -2px;
+    border-left: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transform: rotate(-45deg) scale(0);
+    transition: transform .12s;
+}
+
+.product-image-select input:checked + .product-image-box {
+    background: #ea8020;
+    border-color: #ea8020;
+}
+.product-image-select input:checked + .product-image-box::after { transform: rotate(-45deg) scale(1); }
+.product-image-select input:focus-visible + .product-image-box { outline: 2px solid #2b5a88; outline-offset: 2px; }
+.product-image-select input:disabled + .product-image-box { opacity: .4; cursor: not-allowed; }
+
+/* gambar yang ditandai untuk dihapus */
+.product-image-card.is-removed { border-color: #fca5a5; }
+.product-image-card.is-removed img { opacity: .35; filter: grayscale(1); }
+
+.product-image-badge {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 6px;
+    background: rgba(220, 38, 38, .92);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.product-image-undo {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    border: 0;
+    padding: 5px 10px;
+    border-radius: 6px;
+    background: #fff;
+    color: #374151;
+    font: inherit;
+    font-size: 11px;
+    font-weight: 600;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .25);
+    cursor: pointer;
+}
+.product-image-undo:hover { background: #f3f4f6; }
+
+/* field gambar selebar form */
+.product-field-wide { grid-column: 1 / -1; }
+
+.product-upload-area {
+    display: grid;
+    grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+    gap: 24px;
+    align-items: stretch;
+    padding: 20px;
+    border: 1px dashed #cbd5e1;
+    border-radius: 11px;
+    background: #fafbfd;
+}
+
+.product-upload-area [hidden] { display: none !important; }
+
+/* kolom kiri: tombol + keterangan, tanpa kotak */
+.product-upload-control {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 10px;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+}
+
+.product-upload-button,
+.product-upload-button span {
+    color: #fff !important;
+}
+
+/* kolom kanan: placeholder atau grid preview */
+.product-upload-placeholder { min-height: 160px; }
+
+@media (max-width: 700px) {
+    .product-upload-area { grid-template-columns: 1fr; }
+}
+
+.product-upload-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 42px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    background: #123f82;
+    color: #fff !important;
+    font-size: .82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .2s ease;
+}
+.product-upload-button:hover { background: #0d326a; }
+.product-upload-button svg { width: 17px; height: 17px; }
+
+/* input asli disembunyikan, tetap bisa diakses keyboard */
+.product-upload-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+.product-upload-input:focus-visible + small { outline: 2px solid #e97e20; outline-offset: 3px; }
+
+.product-upload-control small { color: #64748b; font-size: .76rem; }
+.product-upload-control p { margin: 0; color: #a0a9b7; font-size: .72rem; line-height: 1.5; }
+
+.product-upload-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 140px;
+    border: 1px solid #e3e8f0;
+    border-radius: 9px;
+    background: #fff;
+    color: #a0a9b7;
+    font-size: .78rem;
+}
+.product-upload-placeholder svg { width: 38px; height: 38px; }
+
+/* kartu gambar baru */
+.product-image-card.is-new { border-color: #e3e8f0; }
+
+.product-image-new-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: #123f82;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .04em;
+}
+
+.product-image-remove {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    display: grid;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(15, 23, 42, .65);
+    color: #fff;
+    font-size: 17px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color .15s;
+}
+.product-image-remove:hover { background: #dc2626; }
+
 /* =====================================
    ADMIN MITRA FORM
 ===================================== */
@@ -3013,5 +3293,34 @@
     .admin-mitra-cancel,
     .admin-mitra-submit {
         flex: 1;
+    }
+
+    .service-upload-preview {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 220px;
+        padding: 12px;
+        overflow: hidden;
+        border: 1px solid #e3e8f0;
+        border-radius: 9px;
+        background: #fff;
+    }
+
+    .service-upload-preview [hidden] { display: none !important; }
+
+    .service-upload-preview img[data-image-preview] {
+        display: block;
+        width: 100%;
+        height: 220px;
+        object-fit: contain;
+    }
+
+    /* placeholder di dalam kotak, tanpa border ganda */
+    .service-upload-placeholder {
+        min-height: 0;
+        border: 0;
+        background: transparent;
     }
 }
