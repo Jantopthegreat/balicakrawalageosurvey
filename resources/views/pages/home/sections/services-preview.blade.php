@@ -20,15 +20,15 @@
 
                     <a href="{{ route('services.index') }}"
                     class="home-services-button">
-                        Layanan
+                        Services
                     </a>
 
                 </div>
-
-                {{-- Automatic Image Slider --}}
-{{-- Automatic Image Slider --}}
-<x-service-slider :slides="$serviceSlides" />
-
+                
+                {{-- Service Image Carousel --}}
+                <div class="services-page-carousel">
+                    <x-service-slider :slides="$serviceSlides" />
+                </div>
             </div>
         </div>
 
