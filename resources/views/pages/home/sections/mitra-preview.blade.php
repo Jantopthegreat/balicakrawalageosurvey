@@ -9,15 +9,11 @@
                 {{-- Left: Heading and Description --}}
                 <div class="section-heading mitra-preview-heading">
                     <h2 class="section-title">
-                        Dipercaya oleh berbagai mitra
+                         Trusted by Our Partners
                     </h2>
 
                     <p class="section-description">
-                        Kolaborasi dan kepercayaan menjadi bagian
-                        penting dalam setiap proyek kami.
-                        Bersama mitra terpercaya, kami berkomitmen
-                        memberikan hasil survei dan pemetaan
-                        geospasial berkualitas.
+                        We value collaboration and trust as essential parts of every project. Together with our trusted partners, we are committed to delivering high-quality surveying and geospatial mapping solutions.
                     </p>
 
                 </div>

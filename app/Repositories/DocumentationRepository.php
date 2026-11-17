@@ -15,21 +15,21 @@ class DocumentationRepository
             'background_image' => 'images/documentation/background/documentation-bg.jpg',
 
             // Bottom section description
-            'description' => 'Jelajahi rekam jejak kami melalui galeri dokumentasi kegiatan di lapangan. Mulai dari kegiatan scanning hingga survei batimetri, ini adalah bukti nyata komitmen Cakrawala Geosurvey dalam memberikan hasil pengukuran yang presisi, andal, dan tepercaya untuk setiap proyek Anda.',
+            'description' => '“To become a trusted Survey and Mapping Consulting Company and Serve with Our Heart”',
 
             // Video documentation
             'videos' => [
                 [
                     'id' => 'survey-video',
                     'title' => 'Dokumentasi Kegiatan Survey',
-                    'description' => 'Dokumentasi kegiatan survei dan pengukuran lapangan yang dilakukan oleh tim profesional kami.',
+                    'description' => 'We believe that accuracy is the foundation of every successful project. Therefore, we continuously uphold the highest standards of quality, integrity, safety, and responsibility in every task we undertake. Our commitment is not only to meet our clients   expectations but also to exceed them through innovative approaches, effective collaboration, and outstanding service.',
                     'video_path' => 'videos/video-documentation.mp4',
                     'embed_url' => null,
                 ],
                 [
                     'id' => 'mapping-video',
                     'title' => 'Dokumentasi Kegiatan Mapping',
-                    'description' => 'Dokumentasi proses pemetaan menggunakan teknologi dan peralatan survei modern.',
+                    'description' => 'At Bali Cakrawala Geosurvey, we see every project as an opportunity to create value, build trust, and contribute to sustainable development. We aspire to become a trusted geospatial partner, not only in Bali but also throughout Indonesia and beyond.',
                     'video_path' => 'videos/video-documentation.mp4',
                     'embed_url' => null,
                 ],

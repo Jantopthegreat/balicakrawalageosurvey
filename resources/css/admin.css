@@ -2661,3 +2661,357 @@
 @media (max-width: 700px) {
     .admin-editor-grid { grid-template-columns: 1fr; }
 }
+
+/* =====================================
+   ADMIN MITRA FORM
+===================================== */
+
+.admin-mitra-form-card {
+    width: 100%;
+    max-width: 1050px;
+    padding: 28px 30px;
+    background: #ffffff;
+    border: 1px solid #e3e8f0;
+    border-radius: 15px;
+    box-shadow: 0 4px 18px rgba(20, 40, 80, .035);
+}
+
+/* FORM HEADER */
+
+.admin-mitra-form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    padding-bottom: 23px;
+    margin-bottom: 26px;
+    border-bottom: 1px solid #edf0f5;
+}
+
+.admin-mitra-form-header h2 {
+    margin: 0 0 7px;
+    color: #172b49;
+    font-size: 1.18rem;
+    font-weight: 650;
+}
+
+.admin-mitra-form-header p {
+    margin: 0;
+    color: #8993a4;
+    font-size: .84rem;
+    line-height: 1.6;
+}
+
+.admin-mitra-form-badge {
+    display: inline-flex;
+    padding: 7px 11px;
+    border-radius: 6px;
+    background: #fff3e8;
+    color: #d86e13;
+    font-size: .65rem;
+    font-weight: 700;
+    letter-spacing: .07em;
+    white-space: nowrap;
+}
+
+/* FORM GRID */
+
+.admin-mitra-form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+}
+
+.admin-mitra-form-field {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.admin-mitra-form-field>label {
+    color: #26364c;
+    font-size: .86rem;
+    font-weight: 600;
+}
+
+.admin-mitra-form-field>label>span:first-child {
+    color: #e97e20;
+}
+
+.admin-mitra-optional {
+    margin-left: 5px;
+    color: #a0a9b7;
+    font-size: .72rem;
+    font-weight: 400;
+}
+
+/* TEXT INPUT */
+
+.admin-mitra-form-field input[type="text"] {
+    width: 100%;
+    min-height: 47px;
+    padding: 12px 14px;
+    border: 1px solid #dfe5ed;
+    border-radius: 8px;
+    outline: none;
+    background: #fbfcfe;
+    color: #26364c;
+    font-family: inherit;
+    font-size: .86rem;
+    transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.admin-mitra-form-field input[type="text"]::placeholder {
+    color: #a3adbb;
+}
+
+.admin-mitra-form-field input[type="text"]:focus {
+    border-color: #e97e20;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(233, 126, 32, .10);
+}
+
+/* UPLOAD AREA */
+
+.admin-mitra-upload-area {
+    display: grid;
+    grid-template-columns: minmax(180px, 260px) minmax(0, 1fr);
+    gap: 24px;
+    align-items: center;
+    padding: 20px;
+    border: 1px dashed #cbd5e1;
+    border-radius: 11px;
+    background: #fafbfd;
+}
+
+.admin-mitra-upload-preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 155px;
+    padding: 15px;
+    overflow: hidden;
+    border: 1px solid #e3e8f0;
+    border-radius: 9px;
+    background: #ffffff;
+}
+
+.admin-mitra-upload-preview img {
+    display: block;
+    width: 100%;
+    height: 125px;
+    object-fit: contain;
+}
+
+.admin-mitra-upload-preview img[hidden],
+.admin-mitra-upload-placeholder[hidden] {
+    display: none !important;
+}
+
+.admin-mitra-upload-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    color: #a0a9b7;
+    font-size: .78rem;
+}
+
+.admin-mitra-upload-placeholder svg {
+    width: 38px;
+    height: 38px;
+}
+
+/* FILE INPUT */
+
+.admin-mitra-upload-control {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.admin-mitra-upload-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 42px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    background: #123f82;
+    color: #ffffff !important;
+    font-size: .82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .2s ease;
+}
+
+.admin-mitra-upload-button:hover {
+    background: #0d326a;
+}
+
+.admin-mitra-upload-button svg {
+    width: 17px;
+    height: 17px;
+}
+
+.admin-mitra-upload-control input[type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    clip-path: inset(50%);
+}
+
+.admin-mitra-upload-control input[type="file"]:focus-visible+* {
+    outline: 2px solid #e97e20;
+    outline-offset: 3px;
+}
+
+.admin-mitra-upload-control small {
+    color: #64748b;
+    font-size: .76rem;
+    overflow-wrap: anywhere;
+}
+
+.admin-mitra-upload-control p {
+    margin: 0;
+    color: #a0a9b7;
+    font-size: .72rem;
+    line-height: 1.5;
+}
+
+/* FIELD ERROR */
+
+.admin-mitra-form-field.has-error input[type="text"] {
+    border-color: #dc5151;
+    background: #fffafa;
+}
+
+.admin-mitra-field-error {
+    margin: 0;
+    color: #dc5151;
+    font-size: .76rem;
+}
+
+/* ERROR SUMMARY */
+
+.admin-mitra-errors {
+    display: flex;
+    gap: 13px;
+    padding: 15px;
+    margin-bottom: 25px;
+    border: 1px solid #f3c6c6;
+    border-radius: 9px;
+    background: #fff7f7;
+    color: #a83232;
+}
+
+.admin-mitra-error-icon {
+    display: grid;
+    flex-shrink: 0;
+    width: 25px;
+    height: 25px;
+    place-items: center;
+    border-radius: 50%;
+    background: #dc5151;
+    color: #fff;
+    font-weight: 700;
+}
+
+.admin-mitra-errors strong {
+    font-size: .85rem;
+}
+
+.admin-mitra-errors ul {
+    padding-left: 18px;
+    margin: 7px 0 0;
+    font-size: .78rem;
+    line-height: 1.7;
+}
+
+/* FOOTER ACTIONS */
+
+.admin-mitra-form-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    padding-top: 25px;
+    margin-top: 30px;
+    border-top: 1px solid #edf0f5;
+}
+
+.admin-mitra-cancel,
+.admin-mitra-submit {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    min-height: 43px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: .83rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background .2s ease, color .2s ease, transform .2s ease;
+}
+
+.admin-mitra-cancel {
+    border: 1px solid #dce3ec;
+    background: #ffffff;
+    color: #64748b;
+}
+
+.admin-mitra-cancel:hover {
+    border-color: #123f82;
+    color: #123f82;
+}
+
+.admin-mitra-submit {
+    border: 1px solid #e97e20;
+    background: #e97e20;
+    color: #ffffff;
+}
+
+.admin-mitra-submit:hover {
+    border-color: #d86e13;
+    background: #d86e13;
+    transform: translateY(-1px);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 700px) {
+    .admin-mitra-form-card {
+        padding: 20px 17px;
+    }
+
+    .admin-mitra-form-header {
+        flex-direction: column;
+    }
+
+    .admin-mitra-upload-area {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-mitra-upload-preview {
+        min-height: 145px;
+    }
+
+    .admin-mitra-form-footer {
+        justify-content: stretch;
+    }
+
+    .admin-mitra-cancel,
+    .admin-mitra-submit {
+        flex: 1;
+    }
+}

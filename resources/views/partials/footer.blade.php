@@ -1,5 +1,35 @@
 
 <footer class="site-footer">
+        {{-- COMPANY LOCATION MAP --}}
+    <section class="footer-map-section" aria-label="Lokasi perusahaan">
+
+        <div class="container footer-map-container">
+
+            <iframe
+                src="https://www.google.com/maps?q=Bali+Cakrawala+Geosurvey,+Gg.+Gumuk+Sari+No.18b,+Sesetan,+Denpasar+Selatan,+Denpasar+City,+Bali+80225&output=embed"
+                width="100%"
+                height="320"
+                style="border:0"
+                loading="lazy"
+                allowfullscreen
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Lokasi Bali Cakrawala Geosurvey di Google Maps">
+            </iframe>
+
+            <a
+                href="https://maps.app.goo.gl/WT58mWdj6HNm3iKX8?g_st=iw"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="footer-map-link"
+            >
+                Lihat Lokasi di Google Maps
+                <span aria-hidden="true">↗</span>
+            </a>
+
+        </div>
+
+    </section>
+
     <div class="container footer-main">
 
         {{-- Brand Information --}}
@@ -48,10 +78,13 @@
         <div class="footer-column">
             <h2>Info Kami</h2>
 
-            <a href="{{ route('blog.index') }}">Dokumentasi</a>
-            <a href="{{ route('about') }}">Jejak Mitra</a>
+            <a href="{{ route('home') }}#documentation">
+                Dokumentasi
+            </a>
+            <a href="{{ route('home') }}#mitra">
+                Jejak Mitra
+            </a>
             <a href="{{ route('services.index') }}">Layanan</a>
-            <a href="{{ route('contact') }}">Hubungi Kami</a>
         </div>
 
         {{-- Catalog --}}

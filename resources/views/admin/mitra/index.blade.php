@@ -81,9 +81,6 @@
                 <strong>{{ $mitra->total() }}</strong>
             </div>
 
-            <div class="admin-mitra-summary-note">
-                Mitra terdaftar pada website
-            </div>
 
         </div>
 
@@ -259,11 +256,11 @@
 
 
             {{-- PAGINATION --}}
-            @if ($mitra->hasPages())
-                <div class="admin-mitra-pagination">
-                    {{ $mitra->links() }}
-                </div>
-            @endif
+@if ($mitra->hasPages())
+    <div class="admin-contact-pagination">
+        {{ $mitra->links() }}
+    </div>
+@endif
 
         </section>
 

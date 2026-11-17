@@ -688,3 +688,150 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
+
+/* =====================================
+   PRODUCT DETAIL IMAGE CAROUSEL
+===================================== */
+
+function initProductGallery() {
+    const gallery = document.querySelector('[data-product-gallery]');
+
+    if (!gallery || gallery.dataset.initialized === 'true') {
+        return;
+    }
+
+    const mainImage = gallery.querySelector(
+        '[data-product-main-image]'
+    );
+
+    const thumbnails = Array.from(
+        gallery.querySelectorAll('[data-product-thumbnail]')
+    );
+
+    if (!mainImage || thumbnails.length === 0) {
+        return;
+    }
+
+    gallery.dataset.initialized = 'true';
+
+    let currentIndex = 0;
+    let autoplayTimer = null;
+    let changeTimer = null;
+
+    const interval = Math.max(
+        2000,
+        Number(gallery.dataset.interval) || 4500
+    );
+
+    const prefersReducedMotion = window.matchMedia(
+        '(prefers-reduced-motion: reduce)'
+    ).matches;
+
+    function showImage(index) {
+        currentIndex = (index + thumbnails.length) % thumbnails.length;
+
+        const activeThumbnail = thumbnails[currentIndex];
+        const thumbnailImage = activeThumbnail.querySelector('img');
+
+        const imageSource = thumbnailImage.getAttribute('src');
+
+        // Update active thumbnail
+        thumbnails.forEach((thumbnail, i) => {
+            const isActive = i === currentIndex;
+
+            thumbnail.classList.toggle('is-active', isActive);
+            thumbnail.setAttribute('aria-pressed', String(isActive));
+        });
+
+        // Fade transition
+        mainImage.classList.add('is-changing');
+
+        if (changeTimer) {
+            window.clearTimeout(changeTimer);
+        }
+
+        changeTimer = window.setTimeout(() => {
+            mainImage.src = imageSource;
+            mainImage.alt = thumbnailImage.alt;
+
+            requestAnimationFrame(() => {
+                mainImage.classList.remove('is-changing');
+            });
+        }, 180);
+    }
+
+    function stopAutoplay() {
+        if (autoplayTimer !== null) {
+            window.clearInterval(autoplayTimer);
+            autoplayTimer = null;
+        }
+    }
+
+    function startAutoplay() {
+        stopAutoplay();
+
+        if (
+            prefersReducedMotion ||
+            document.hidden ||
+            thumbnails.length <= 1
+        ) {
+            return;
+        }
+
+        autoplayTimer = window.setInterval(() => {
+            showImage(currentIndex + 1);
+        }, interval);
+    }
+
+    // Thumbnail click
+    thumbnails.forEach((thumbnail, index) => {
+        thumbnail.addEventListener('click', () => {
+            showImage(index);
+            startAutoplay();
+        });
+    });
+
+    // Pause on hover
+    gallery.addEventListener('mouseenter', stopAutoplay);
+    gallery.addEventListener('mouseleave', startAutoplay);
+
+    // Pause when keyboard focus is inside gallery
+    gallery.addEventListener('focusin', stopAutoplay);
+
+    gallery.addEventListener('focusout', (event) => {
+        if (!gallery.contains(event.relatedTarget)) {
+            startAutoplay();
+        }
+    });
+
+    // Pause when browser tab is hidden
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            stopAutoplay();
+        } else {
+            startAutoplay();
+        }
+    });
+
+    // Initialize
+    const initialIndex = thumbnails.findIndex(
+        thumbnail => thumbnail.classList.contains('is-active')
+    );
+
+    currentIndex = initialIndex >= 0 ? initialIndex : 0;
+
+    startAutoplay();
+}
+
+// Initialize after DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener(
+        'DOMContentLoaded',
+        initProductGallery,
+        { once: true }
+    );
+} else {
+    initProductGallery();
+}
+

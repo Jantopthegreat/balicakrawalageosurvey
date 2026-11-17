@@ -63,12 +63,12 @@
                     >
 
                         {{-- Gallery Heading --}}
-                        <div class="documentation-gallery-heading">
+                        <div class="documentation-gallery-heading reveal">
                             <h3>{{ $gallery['title'] }}</h3>
                         </div>
 
                         {{-- Gallery Slider --}}
-                        <div class="documentation-gallery-viewport">
+                        <div class="documentation-gallery-viewport reveal">
 
                             <div class="documentation-gallery-track">
 

@@ -11,10 +11,10 @@ class PageContentRepository
     public function homeHero(): array
     {
         return [
-            'eyebrow' => 'Cakrawala Geosurvey',
-            'title' => 'Cakrawala Geosurvey',
+            'eyebrow' => 'Welcome to Cakrawala Geosurvey',
+            'title' => 'Welcome to Cakrawala Geosurvey',
             'subtitle' => 'Cakrawala Geosurvey.',
-            'description' => 'Solusi Presisi untuk Survei dan Pemetaan Anda Hadir sejak tahun 2020, PT Cakrawala Pilar Nusantara (Cakrawala Geosurvey) adalah mitra tepercaya yang siap membantu Anda dengan layanan konsultan survei, pengukuran, dan pemetaan yang akurat.',
+            'description' => 'Bali Cakrawala Geosurvey strives to be the Best and Leading Surveying and Mapping Company in Bali. A professional geospatial company committed to delivering excellence in surveying, mapping, and geospatial solutions. We are committed to providing reliable, accurate, and high-quality services that support infrastructure development, land management, construction, engineering, and various geospatial projects.',
             'image' => 'images/hero/herolandscape.png',
             'feature' => [
                 'image' => 'images/hero/hero-feature-placeholder.svg',

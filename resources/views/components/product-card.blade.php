@@ -1,10 +1,16 @@
 
 @props(['product'])
 
-<article class="product-card {{ $product['availability'] === 'Tidak Tersedia' ? 'product-card-unavailable' : '' }}">
+@php
+    $type = $product['type'] ?? '';
+    $badge = $type === 'rent' ? 'Sewa' : ($type === 'sale' ? 'Jual' : null);
+@endphp
 
+<article class="catalog-product-card">
+
+    {{-- PRODUCT IMAGE --}}
     <a
-        class="product-image-wrap"
+        class="catalog-product-image"
         href="{{ route('store.show', $product['slug']) }}"
         aria-label="Lihat {{ $product['name'] }}"
     >
@@ -14,40 +20,31 @@
             loading="lazy"
         >
 
-        <span class="product-image-badge">
-            {{ $product['type'] === 'rent' ? 'Sewa' : 'Jual' }}
-        </span>
+        @if ($badge)
+            <span class="catalog-product-badge">
+                {{ $badge }}
+            </span>
+        @endif
     </a>
 
-    <div class="product-card-body">
+    {{-- PRODUCT INFORMATION --}}
+    <div class="catalog-product-body">
 
         <h3>
             {{ $product['name'] }}
         </h3>
 
-        <p class="product-category">
-            <strong>Jenis:</strong> {{ $product['category'] }}
-        </p>
-
-        <p class="product-description">
+        <p class="catalog-product-description">
             {{ $product['description'] }}
         </p>
 
-        <div class="product-card-bottom">
-
-            <strong class="product-price">
-                {{ $product['price_label'] ?? $product['availability'] }}
-            </strong>
-
-            @if ($product['availability'] === 'Tidak Tersedia')
-                <span class="product-order-link product-order-link-disabled">Tidak tersedia</span>
-            @else
-                <a class="product-order-link" href="{{ route('store.show', $product['slug']) }}">
-                    Lihat Detail <span aria-hidden="true">›</span>
-                </a>
-            @endif
-
-        </div>
+        <a
+            href="{{ route('store.show', $product['slug']) }}"
+            class="catalog-product-order"
+        >
+            Order Here
+            <span aria-hidden="true">›</span>
+        </a>
 
     </div>
 

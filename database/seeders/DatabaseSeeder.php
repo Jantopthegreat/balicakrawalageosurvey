@@ -95,8 +95,11 @@ class DatabaseSeeder extends Seeder
                 'image' => 'images/services/3d-model-placeholder.svg',
             ],
             [
-                'judul' => 'Design Architecture',
-                'deskripsi' => 'Architecture and design workflows benefit from an accurate understanding of site conditions. Spatial data can support coordination, visualization, and project communication.',
+                'judul' => 'TOPOGRAPHY SURVEY',
+                'deskripsi' => 'Surveying and mapping the Earth’s surface to obtain detailed information about
+                landforms, elevations, and the locations of natural and man-made features as a basis for planning,
+                analysis, and implementation of a project
+                .',
                 'image' => 'images/services/design-architecture-placeholder.svg',
             ],
         ] as $service) {

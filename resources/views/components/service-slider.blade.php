@@ -5,7 +5,7 @@
     data-interval="2000"
     aria-label="Layanan unggulan"
 >
-    <div class="home-service-slider-track">
+    <div class="home-service-slider-track reveal">
 
         @foreach($slides as $index => $slide)
             <div

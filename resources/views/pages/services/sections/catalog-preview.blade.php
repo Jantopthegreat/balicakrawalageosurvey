@@ -18,70 +18,123 @@
 
     <div class="container">
 
-        {{-- Horizontal Product List --}}
-        <div class="service-catalog-track">
+        
+{{-- Product Carousel --}}
+<div class="service-catalog-carousel" data-service-catalog-carousel>
 
-            @forelse($catalogProducts as $product)
+    {{-- Previous Button --}}
+    <button
+        type="button"
+        class="service-catalog-arrow"
+        data-catalog-prev
+        aria-label="Produk sebelumnya"
+    >
+        <svg viewBox="0 0 24 24" fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="m15 18-6-6 6-6"/>
+        </svg>
+    </button>
 
-                <article class="service-catalog-card {{ $product['availability'] === 'Tidak Tersedia' ? 'service-catalog-card-unavailable' : '' }}">
 
-                    <a
-                        href="{{ route('store.show', $product['slug']) }}"
-                        class="service-catalog-image"
-                        aria-label="Lihat {{ $product['name'] }}"
+    {{-- Product Track --}}
+    <div
+        class="service-catalog-track"
+        data-service-catalog-track
+        aria-label="Daftar produk katalog"
+        tabindex="0"
+    >
+
+        @forelse($catalogProducts as $product)
+
+            <article class="service-catalog-card {{ $product['availability'] === 'Tidak Tersedia' ? 'service-catalog-card-unavailable' : '' }}">
+
+                <a
+                    href="{{ route('store.show', $product['slug']) }}"
+                    class="service-catalog-image"
+                    aria-label="Lihat {{ $product['name'] }}"
+                >
+                    <img
+                        src="{{ asset($product['image'] ?? 'images/products/product-placeholder.svg') }}"
+                        alt="{{ $product['name'] }}"
+                        loading="lazy"
                     >
-                        <img
-                            src="{{ asset($product['image'] ?? 'images/products/product-placeholder.svg') }}"
-                            alt="{{ $product['name'] }}"
-                            loading="lazy"
-                        >
 
-                        <span class="service-catalog-badge">
-                            {{ ($product['type'] ?? '') === 'rent'
-                                ? 'Sewa'
-                                : ((($product['type'] ?? '') === 'sale') ? 'Jual' : 'Produk') }}
+                    <span class="service-catalog-badge">
+                        {{ ($product['type'] ?? '') === 'rent'
+                            ? 'Sewa'
+                            : ((($product['type'] ?? '') === 'sale') ? 'Jual' : 'Produk') }}
+                    </span>
+                </a>
+
+                <div class="service-catalog-card-body">
+
+                    <h3>{{ $product['name'] }}</h3>
+
+                    <p class="service-catalog-category">
+                        <strong>Jenis:</strong>
+                        {{ $product['category'] }}
+                    </p>
+
+                    <p class="service-catalog-description">
+                        {{ $product['description'] }}
+                    </p>
+
+                    <strong class="service-catalog-price">
+                        {{ $product['price_label'] ?? $product['availability'] ?? 'Harga' }}
+                    </strong>
+
+                    @if ($product['availability'] === 'Tidak Tersedia')
+                        <span class="service-catalog-order service-catalog-order-disabled">
+                            Tidak tersedia
                         </span>
-                    </a>
+                    @else
+                        <a
+                            href="https://wa.me/{{ $whatsappNumber }}?text={{ rawurlencode('Halo, saya tertarik dengan produk ' . $product['name'] . '. Mohon informasi lebih lanjut.') }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="service-catalog-order"
+                        >
+                            Order Here
+                            <span aria-hidden="true">›</span>
+                        </a>
+                    @endif
 
-                    <div class="service-catalog-card-body">
+                </div>
 
-                        <h3>{{ $product['name'] }}</h3>
+            </article>
 
-                        <p class="service-catalog-category">
-                            <strong>Jenis:</strong>
-                            {{ $product['category'] }}
-                        </p>
+        @empty
 
-                        <p class="service-catalog-description">
-                            {{ $product['description'] }}
-                        </p>
+            <p class="service-catalog-empty">
+                Produk katalog belum tersedia.
+            </p>
 
-                        <strong class="service-catalog-price">
-                            {{ $product['price_label'] ?? $product['availability'] ?? 'Harga' }}
-                        </strong>
+        @endforelse
 
-                        @if ($product['availability'] === 'Tidak Tersedia')
-                            <span class="service-catalog-order service-catalog-order-disabled">Tidak tersedia</span>
-                        @else
-                            <a href="https://wa.me/{{ $whatsappNumber }}?text={{ rawurlencode('Halo, saya tertarik dengan produk ' . $product['name'] . '. Mohon informasi lebih lanjut.') }}" target="_blank" rel="noopener noreferrer" class="service-catalog-order">
-                                Order Here
-                                <span aria-hidden="true">›</span>
-                            </a>
-                        @endif
+    </div>
 
-                    </div>
 
-                </article>
+    {{-- Next Button --}}
+    <button
+        type="button"
+        class="service-catalog-arrow"
+        data-catalog-next
+        aria-label="Produk berikutnya"
+    >
+        <svg viewBox="0 0 24 24" fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="m9 18 6-6-6-6"/>
+        </svg>
+    </button>
 
-            @empty
+</div>
 
-                <p class="service-catalog-empty">
-                    Produk katalog belum tersedia.
-                </p>
-
-            @endforelse
-
-        </div>
 
         {{-- Description --}}
         <div class="service-catalog-description-bottom">
