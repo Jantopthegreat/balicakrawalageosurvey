@@ -96,7 +96,7 @@
                     href="{{ route('store.index') }}"
                     class="product-detail-back"
                 >
-                    ← Kembali ke Katalog
+                    ← Return to Catalog
                 </a>
 
                 <div class="product-detail-title-row">

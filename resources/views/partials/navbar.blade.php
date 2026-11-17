@@ -34,21 +34,21 @@
                 class="nav-link {{ request()->routeIs('home') ? 'is-active' : '' }}"
                 href="{{ route('home') }}"
             >
-                Beranda
+                Home
             </a>
 
 <a
     href="{{ route('services.index') }}"
     class="nav-link {{ request()->routeIs('services.*') ? 'is-active' : '' }}"
 >
-    Layanan
+    Services
 </a>
 
             <a
                 class="nav-link {{ request()->routeIs('store.*') ? 'is-active' : '' }}"
                 href="{{ route('store.index') }}"
             >
-                Katalog
+                Catalog
             </a>
 
         </nav>

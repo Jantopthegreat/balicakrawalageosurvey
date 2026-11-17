@@ -12,7 +12,7 @@
     {{-- Orange Heading --}}
     <div class="service-catalog-heading">
         <div class="container">
-            <h2>Sewa &amp; Jual Beli Alat</h2>
+            <h2>Rent &amp; Buy Sell Equipment</h2>
         </div>
     </div>
 
@@ -83,7 +83,7 @@
                     </p>
 
                     <strong class="service-catalog-price">
-                        {{ $product['price_label'] ?? $product['availability'] ?? 'Harga' }}
+                        {{ $product['price_label'] ?? $product['availability'] ?? 'Price' }}
                     </strong>
 
                     @if ($product['availability'] === 'Tidak Tersedia')
@@ -140,19 +140,19 @@
         <div class="service-catalog-description-bottom">
 
             <p>
-                Selain menyediakan jasa konsultan survei, Cakrawala
-                Geosurvey juga melayani penyewaan dan jual beli berbagai
-                instrumen pemetaan geospasial berkualitas tinggi.
-                Seluruh peralatan kami telah terkalibrasi dan siap
-                diandalkan untuk menunjang kelancaran teknis
-                operasional di lapangan.
+                Besides offering survey consulting services, Cakrawala
+                Geosurvey also provides rental and resale of a wide range
+                of high-quality geospatial mapping instruments.
+                All of our equipment has been calibrated and is ready to
+                be relied on to support the smooth technical operation of
+                fieldwork.
             </p>
 
             <a
                 href="{{ route('store.index') }}"
                 class="service-catalog-button"
             >
-                Katalog Jual Beli
+                Buy Sell Catalog
             </a>
 
         </div>
