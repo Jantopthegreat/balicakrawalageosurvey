@@ -7,7 +7,7 @@
     {{-- Section Heading --}}
     <div class="documentation-heading">
         <div class="container">
-            <h2>Dokumentasi</h2>
+            <h2>Documentation</h2>
         </div>
     </div>
 

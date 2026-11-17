@@ -7,12 +7,12 @@
 @section('content')
 
 <main class="catalog-page">
-
     <div class="container">
 
-        {{-- Catalog Header --}}
+        {{-- ================================
+             CATALOG HEADER
+        ================================= --}}
         <header class="catalog-header">
-
             <h1>Katalog</h1>
 
             <form
@@ -20,7 +20,6 @@
                 method="GET"
                 class="catalog-search-form"
             >
-
                 <input
                     type="search"
                     name="q"
@@ -30,10 +29,9 @@
                 >
 
                 <select name="category" aria-label="Filter kategori">
-
                     <option value="">Semua Kategori</option>
 
-                    @foreach($categories as $category)
+                    @foreach ($categories as $category)
                         <option
                             value="{{ $category }}"
                             @selected(request('category') === $category)
@@ -41,77 +39,153 @@
                             {{ $category }}
                         </option>
                     @endforeach
-
                 </select>
 
-                <button type="submit" aria-label="Cari">
+                <button type="submit" aria-label="Cari produk">
                     <span aria-hidden="true">⌕</span>
                 </button>
-
             </form>
-
         </header>
 
 
-        {{-- RENT PRODUCTS --}}
+        {{-- ================================
+             RENT PRODUCTS
+        ================================= --}}
         <section class="catalog-group">
 
             <div class="catalog-group-heading">
                 <h2>Alat untuk Disewa</h2>
-                <p>Peralatan survei yang tersedia untuk kebutuhan proyek Anda.</p>
+                <p>
+                    Peralatan survei yang tersedia untuk kebutuhan proyek Anda.
+                </p>
             </div>
 
-            <div class="product-grid">
+            @if ($rentProducts->count() > 0)
 
-                @forelse($rentProducts as $product)
-                    <x-product-card :product="$product" />
-                @empty
-                    <p class="catalog-empty">
-                        Tidak ada produk sewa yang ditemukan.
-                    </p>
-                @endforelse
+                <div
+                    class="catalog-products-carousel"
+                    data-catalog-products-carousel
+                >
 
-            </div>
+                    {{-- Previous Button --}}
+                    <button
+                        type="button"
+                        class="catalog-products-arrow"
+                        data-catalog-prev
+                        aria-label="Produk sewa sebelumnya"
+                    >
+                        &#10094;
+                    </button>
 
-            @if($rentProducts->hasPages())
+                    {{-- Product Track --}}
+                    <div
+                        class="catalog-products-track"
+                        data-catalog-track
+                    >
+                        @foreach ($rentProducts as $product)
+                            <x-product-card :product="$product" />
+                        @endforeach
+                    </div>
+
+                    {{-- Next Button --}}
+                    <button
+                        type="button"
+                        class="catalog-products-arrow"
+                        data-catalog-next
+                        aria-label="Produk sewa berikutnya"
+                    >
+                        &#10095;
+                    </button>
+
+                </div>
+
+            @else
+
+                <div class="catalog-empty">
+                    <p>Tidak ada produk sewa yang ditemukan.</p>
+                </div>
+
+            @endif
+
+            {{-- Rent Pagination --}}
+            @if ($rentProducts->hasPages())
                 <div class="catalog-pagination">
-                    {{ $rentProducts->links() }}
+                    {{ $rentProducts->appends(request()->except(['rent_page', 'sale_page']))->links() }}
                 </div>
             @endif
 
         </section>
 
 
-        {{-- SALE PRODUCTS --}}
+        {{-- ================================
+             SALE PRODUCTS
+        ================================= --}}
         <section class="catalog-group">
 
             <div class="catalog-group-heading">
                 <h2>Alat untuk Dijual</h2>
-                <p>Peralatan survei dan pemetaan yang tersedia untuk pembelian.</p>
+                <p>
+                    Peralatan survei dan pemetaan yang tersedia untuk pembelian.
+                </p>
             </div>
 
-            <div class="product-grid">
+            @if ($saleProducts->count() > 0)
 
-                @forelse($saleProducts as $product)
-                    <x-product-card :product="$product" />
-                @empty
-                    <p class="catalog-empty">
-                        Tidak ada produk jual yang ditemukan.
-                    </p>
-                @endforelse
+                <div
+                    class="catalog-products-carousel"
+                    data-catalog-products-carousel
+                >
 
-            </div>
+                    {{-- Previous Button --}}
+                    <button
+                        type="button"
+                        class="catalog-products-arrow"
+                        data-catalog-prev
+                        aria-label="Produk jual sebelumnya"
+                    >
+                        &#10094;
+                    </button>
 
-            @if($saleProducts->hasPages())
+                    {{-- Product Track --}}
+                    <div
+                        class="catalog-products-track"
+                        data-catalog-track
+                    >
+                        @foreach ($saleProducts as $product)
+                            <x-product-card :product="$product" />
+                        @endforeach
+                    </div>
+
+                    {{-- Next Button --}}
+                    <button
+                        type="button"
+                        class="catalog-products-arrow"
+                        data-catalog-next
+                        aria-label="Produk jual berikutnya"
+                    >
+                        &#10095;
+                    </button>
+
+                </div>
+
+            @else
+
+                <div class="catalog-empty">
+                    <p>Tidak ada produk jual yang ditemukan.</p>
+                </div>
+
+            @endif
+
+            {{-- Sale Pagination --}}
+            @if ($saleProducts->hasPages())
                 <div class="catalog-pagination">
-                    {{ $saleProducts->links() }}
+                    {{ $saleProducts->appends(request()->except(['rent_page', 'sale_page']))->links() }}
                 </div>
             @endif
 
         </section>
 
     </div>
-
 </main>
 
 @endsection

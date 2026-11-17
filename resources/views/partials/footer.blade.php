@@ -39,8 +39,7 @@
             </a>
 
             <p class="footer-description">
-                Tetap terhubung dengan kami untuk mendapatkan informasi terbaru seputar
-                layanan survei, pemetaan, serta pembaruan proyek dari Cakrawala Geosurvey.
+                Stay connected with us to receive the latest updates on surveying services, mapping solutions, and project developments from Cakrawala Geosurvey.
             </p>
 
             {{-- Social Media --}}
@@ -76,23 +75,23 @@
 
         {{-- Company Information --}}
         <div class="footer-column">
-            <h2>Info Kami</h2>
+            <h2>About Us</h2>
 
             <a href="{{ route('home') }}#documentation">
-                Dokumentasi
+                Documentation
             </a>
             <a href="{{ route('home') }}#mitra">
-                Jejak Mitra
+                Our Partners
             </a>
-            <a href="{{ route('services.index') }}">Layanan</a>
+            <a href="{{ route('services.index') }}">Services</a>
         </div>
 
         {{-- Catalog --}}
         <div class="footer-column">
-            <h2>Katalog</h2>
+            <h2>Catalog</h2>
 
-            <a href="{{ route('store.index') }}">Sewa</a>
-            <a href="{{ route('store.index') }}">Jual Beli</a>
+            <a href="{{ route('store.index') }}">Rent</a>
+            <a href="{{ route('store.index') }}">Buy Sell</a>
         </div>
 
         <!-- <div class="footer-column footer-contact">

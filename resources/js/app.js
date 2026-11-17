@@ -835,3 +835,64 @@ if (document.readyState === 'loading') {
     initProductGallery();
 }
 
+
+
+function initCatalogProductsCarousel() {
+    const carousels = document.querySelectorAll(
+        '[data-catalog-products-carousel]'
+    );
+
+    carousels.forEach((carousel) => {
+        // Hindari inisialisasi berulang
+        if (carousel.dataset.initialized === 'true') return;
+
+        const track = carousel.querySelector('[data-catalog-track]');
+        const prevButton = carousel.querySelector('[data-catalog-prev]');
+        const nextButton = carousel.querySelector('[data-catalog-next]');
+
+        if (!track || !prevButton || !nextButton) return;
+
+        carousel.dataset.initialized = 'true';
+
+        // Perbarui status tombol
+        function updateArrows() {
+            const maxScroll = track.scrollWidth - track.clientWidth;
+
+            prevButton.disabled = track.scrollLeft <= 2;
+            nextButton.disabled = track.scrollLeft >= maxScroll - 2;
+        }
+
+        // Geser satu area tampilan carousel
+        function slide(direction) {
+            const amount = track.clientWidth;
+
+            track.scrollBy({
+                left: direction * amount,
+                behavior: 'smooth',
+            });
+        }
+
+        prevButton.addEventListener('click', () => {
+            slide(-1);
+        });
+
+        nextButton.addEventListener('click', () => {
+            slide(1);
+        });
+
+        track.addEventListener('scroll', updateArrows, {
+            passive: true,
+        });
+
+        window.addEventListener('resize', updateArrows);
+
+        // Tunggu layout selesai dihitung
+        requestAnimationFrame(() => {
+            updateArrows();
+        });
+    });
+}
+initCatalogProductsCarousel();
+
+
+

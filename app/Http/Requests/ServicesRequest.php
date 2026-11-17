@@ -2,49 +2,38 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ServicesRequest extends FormRequest
 {
-     public function authorize(): bool
+    public function authorize(): bool
     {
         return true;
     }
 
     protected function prepareForValidation(): void
     {
-        $content = $this->input('content');
-
-        // Kalau form mengirim content sebagai string JSON (textarea), ubah jadi array
-        if (is_string($content)) {
-            $decoded = json_decode($content, true);
-            $content = json_last_error() === JSON_ERROR_NONE && is_array($decoded)
-                ? $decoded
-                : (preg_split('/\R/u', $content) ?: []);
-        }
-
         $this->merge([
-            'judul'           => trim((string) $this->input('judul')),
-            'deskripsi'       => trim((string) $this->input('deskripsi')),
+            'judul' => trim((string) $this->input('judul')),
+            'deskripsi' => trim((string) $this->input('deskripsi')),
         ]);
     }
 
     public function rules(): array
     {
         return [
-            'judul'           => ['required', 'string', 'max:255'],
-            'deskripsi'       => ['required', 'string', 'max:5000'],
-            'image'           => ['nullable', 'file', 'mimes:jpg,jpeg,png,webp', 'max:8192']
+            'judul' => ['required', 'string', 'max:255'],
+            'deskripsi' => ['required', 'string', 'max:5000'],
+            'image' => ['nullable', 'file', 'mimes:jpg,jpeg,png,webp', 'max:8192'],
         ];
     }
 
     public function attributes(): array
     {
         return [
-            'judul'           => 'judul',
-            'deskripsi'       => 'deskripsi',
-            'image'           => 'gambar',
+            'judul' => 'judul',
+            'deskripsi' => 'deskripsi',
+            'image' => 'gambar',
         ];
     }
 

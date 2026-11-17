@@ -10,7 +10,7 @@
         {{-- Page Heading --}}
         <div class="home-services-heading services-page-heading">
             <div class="container">
-                <h2>Layanan</h2>
+                <h2>Services</h2>
             </div>
         </div>
 

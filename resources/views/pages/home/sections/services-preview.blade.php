@@ -4,7 +4,7 @@
         {{-- Section Heading --}}
         <div class="home-services-heading">
             <div class="container">
-                <h2>Layanan</h2>
+                <h2>Services</h2>
             </div>
         </div>
 

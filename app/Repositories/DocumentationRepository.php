@@ -38,7 +38,7 @@ class DocumentationRepository
             // Photo documentation galleries
             'galleries' => [
                 'survey' => [
-                    'title' => 'Kegiatan Survey',
+                    'title' => 'Survey Activities',
 
                     'photos' => [
                         [
@@ -57,7 +57,7 @@ class DocumentationRepository
                 ],
 
                 'drone' => [
-                    'title' => 'Kegiatan Drone',
+                    'title' => 'Drone Activities',
 
                     'photos' => [
                         [
