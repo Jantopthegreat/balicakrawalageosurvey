@@ -26,22 +26,22 @@ class AdminProductsController extends Controller
     }
 
     public function store(ProductRequest $request): RedirectResponse
-{
-    $data = $request->safe()->except(['images', 'remove_images']);
-    $data['slug'] = $this->uniqueSlug($data['name']);
+    {
+        $data = $request->safe()->except(['images', 'remove_images']);
+        $data['slug'] = $this->uniqueSlug($data['name']);
 
-    $paths = $this->storeImages($request);
-    if ($paths) {
-        $data['images'] = $paths;
-        $data['image']  = $paths[0];
+        $paths = $this->storeImages($request);
+        if ($paths) {
+            $data['images'] = $paths;
+            $data['image']  = $paths[0];
+        }
+
+        $product = Product::create($data);
+
+        return redirect()
+            ->route('admin.products.index', $product)
+            ->with('status', 'Produk berhasil ditambahkan.');
     }
-
-    $product = Product::create($data);
-
-    return redirect()
-        ->route('admin.products.edit', $product)
-        ->with('status', 'Produk berhasil ditambahkan.');
-}
 
     public function edit(Product $product): View
     {
@@ -52,27 +52,27 @@ class AdminProductsController extends Controller
     }
 
     public function update(ProductRequest $request, Product $product): RedirectResponse
-{
-    $data = $request->safe()->except(['images', 'remove_images']);
-    $data['slug'] = $product->slug;
+    {
+        $data = $request->safe()->except(['images', 'remove_images']);
+        $data['slug'] = $product->slug;
 
-    $current = $this->currentImages($product);
-    $toRemove = array_intersect($current, $request->input('remove_images', []));
+        $current = $this->currentImages($product);
+        $toRemove = array_intersect($current, $request->input('remove_images', []));
 
-    $kept = array_values(array_diff($current, $toRemove));
-    $all  = array_values([...$kept, ...$this->storeImages($request)]);
+        $kept = array_values(array_diff($current, $toRemove));
+        $all  = array_values([...$kept, ...$this->storeImages($request)]);
 
-    $this->deleteFiles($toRemove);
+        $this->deleteFiles($toRemove);
 
-    $data['images'] = $all;
-    $data['image']  = $all[0] ?? null;
+        $data['images'] = $all;
+        $data['image']  = $all[0] ?? null;
 
-    $product->update($data);
+        $product->update($data);
 
-    return redirect()
-        ->route('admin.products.index')
-        ->with('status', 'Produk berhasil diperbarui.');
-}
+        return redirect()
+            ->route('admin.products.index')
+            ->with('status', 'Produk berhasil diperbarui.');
+    }
 
     public function destroy(Product $product): RedirectResponse
     {

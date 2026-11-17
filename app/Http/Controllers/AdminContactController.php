@@ -40,7 +40,7 @@ class AdminContactController extends Controller
         $contact = Contact::create($request->validated());
 
         return redirect()
-            ->route('admin.contact.edit', $contact)
+            ->route('admin.contact.index', $contact)
             ->with('status', 'Pesan kontak berhasil dibuat.');
     }
 
@@ -54,7 +54,7 @@ class AdminContactController extends Controller
         $contact->update($request->validated());
 
         return redirect()
-            ->route('admin.contact.edit', $contact)
+            ->route('admin.contact.index', $contact)
             ->with('status', 'Pesan kontak berhasil diperbarui.');
     }
 

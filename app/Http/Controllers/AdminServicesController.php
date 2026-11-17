@@ -33,7 +33,7 @@ class AdminServicesController extends Controller
         $service = Services::create($data);
 
         return redirect()
-            ->route('admin.services.edit', $service)
+            ->route('admin.services.index', $service)
             ->with('status', 'Layanan berhasil ditambahkan.');
     }
 

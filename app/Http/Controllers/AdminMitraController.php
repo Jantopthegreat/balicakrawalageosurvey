@@ -33,7 +33,7 @@ class AdminMitraController extends Controller
         $mitra = Mitra::create($data);
 
         return redirect()
-            ->route('admin.mitra.edit', $mitra)
+            ->route('admin.mitra.index', $mitra)
             ->with('status', 'Mitra berhasil ditambahkan.');
     }
 
