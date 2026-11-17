@@ -29,7 +29,7 @@
                         class="home-service-slide-link"
                         tabindex="{{ $loop->first ? '0' : '-1' }}"
                     >
-                        Lihat Layanan
+                        Learn More
                         <span aria-hidden="true">↗</span>
                     </a>
                 </div>

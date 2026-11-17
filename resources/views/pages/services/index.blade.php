@@ -15,8 +15,8 @@
         </div>
 
         {{-- Service Content --}}
-        <div class="services-page-content">
-            <div class="container">
+        <div class="services-page-content hero-enter">
+            <div class="container ">
 
                 {{-- Service Image Carousel --}}
                 <div class="services-page-carousel">

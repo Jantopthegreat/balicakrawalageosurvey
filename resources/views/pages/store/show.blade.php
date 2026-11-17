@@ -21,13 +21,10 @@
         default => 'Produk',
     };
 
-    $whatsappNumber = preg_replace(
-        '/\D+/',
-        '',
-        config('cakrawala.contact.whatsapp', '')
-    );
+    $whatsappNumber = preg_replace('/\D+/', '', $contact['whatsapp'] ?? '');
 
-    $whatsappMessage = 'Halo Cakrawala Geosurvey, saya tertarik dengan produk '
+
+    $whatsappMessage = 'Halo Cakrawala Geosurvey, saya ingin dengan produk '
         . $product['name']
         . '. Mohon informasi lebih lanjut.';
 @endphp

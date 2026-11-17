@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\ProductRepository;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
@@ -111,11 +112,18 @@ class StoreController extends Controller
     public function show(string $slug): View
     {
         $product = $this->products->findBySlug($slug);
+                $contactSettings = Contact::query()->latest('id')->first();
+        $contact = config('cakrawala.contact');
+
+        if ($contactSettings !== null) {
+            $contact['whatsapp'] = $contactSettings->no_hp;
+        }
 
         abort_if($product === null, 404);
 
         return view('pages.store.show', [
             'product' => $product,
+            'contact' => $contact,
         ]);
     }
 }

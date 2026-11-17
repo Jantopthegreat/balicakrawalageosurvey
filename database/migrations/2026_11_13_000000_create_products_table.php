@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->string('image')->nullable();
             $table->string('availability')->default('Tersedia');
-            $table->string('price_label')->default('Harga');
+            $table->string('price_label')->nullable();
             $table->timestamps();
         });
     }

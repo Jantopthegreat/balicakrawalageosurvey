@@ -1,11 +1,4 @@
 
-@php
-    $whatsappNumber = preg_replace(
-        '/\D+/',
-        '',
-        config('cakrawala.contact.whatsapp', '')
-    );
-@endphp
 
 <section class="service-catalog-preview">
 
@@ -90,16 +83,6 @@
                         <span class="service-catalog-order service-catalog-order-disabled">
                             Tidak tersedia
                         </span>
-                    @else
-                        <a
-                            href="https://wa.me/{{ $whatsappNumber }}?text={{ rawurlencode('Halo, saya tertarik dengan produk ' . $product['name'] . '. Mohon informasi lebih lanjut.') }}"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="service-catalog-order"
-                        >
-                            Order Here
-                            <span aria-hidden="true">›</span>
-                        </a>
                     @endif
 
                 </div>

@@ -30,7 +30,7 @@ class ProductRequest extends FormRequest
             'category'       => ['required', 'string', 'max:100'],
             'type'           => ['required', 'in:rent,sale'],
             'availability'   => ['required', 'in:Tersedia,Tidak Tersedia'],
-            'price_label'    => ['required', 'string', 'max:255'],
+            'price_label'    => ['nullable', 'string', 'max:255'],
             'description'    => ['required', 'string'],
             'images'         => ['nullable', 'array', 'max:10'],
             'images.*'       => ['image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
