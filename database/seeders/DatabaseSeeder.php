@@ -53,8 +53,8 @@ class DatabaseSeeder extends Seeder
                 'type' => $type,
                 'description' => $description,
                 'image' => $image,
-                'availability' => 'Tersedia',
-                'price_label' => 'Harga',
+                'availability' => 'Available',
+                'price_label' => 'Cost',
             ]);
         }
 
