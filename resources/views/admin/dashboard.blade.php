@@ -86,7 +86,7 @@
 
                         <div>
                             <span>Produk Jual</span>
-                            <strong>{{ $typeCounts['jual'] }}</strong>
+                            <strong>{{ $typeCounts['Sale'] }}</strong>
                         </div>
 
                     </article>
@@ -98,7 +98,7 @@
 
                         <div>
                             <span>Produk Sewa</span>
-                            <strong>{{ $typeCounts['sewa'] }}</strong>
+                            <strong>{{ $typeCounts['Rent'] }}</strong>
                         </div>
 
                     </article>

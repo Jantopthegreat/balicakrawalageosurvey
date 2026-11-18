@@ -8,6 +8,8 @@ class MitraRepository
 {
     public function all(): array
     {
+        $imageurl = asset('images/products/product-placeholder.svg');
+
         return Mitra::query()->latest('id')->get()->map(
             static fn (Mitra $mitra): array => [
                 'id' => $mitra->id,
@@ -16,7 +18,7 @@ class MitraRepository
                     ? (str_starts_with($mitra->image, 'mitra/')
                         ? asset('storage/' . $mitra->image)
                         : asset($mitra->image))
-                    : null,
+                    : $imageurl,
             ],
         )->all();
     }

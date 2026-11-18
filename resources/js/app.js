@@ -839,14 +839,14 @@ if (document.readyState === 'loading') {
 
 function initCatalogProductsCarousel() {
     const carousels = document.querySelectorAll(
-        '[data-catalog-products-carousel]'
+        '[data-catalog-products-carousel],[data-service-catalog-carousel]'
     );
 
     carousels.forEach((carousel) => {
         // Hindari inisialisasi berulang
         if (carousel.dataset.initialized === 'true') return;
 
-        const track = carousel.querySelector('[data-catalog-track]');
+        const track = carousel.querySelector('[data-catalog-track], [data-service-catalog-track]');
         const prevButton = carousel.querySelector('[data-catalog-prev]');
         const nextButton = carousel.querySelector('[data-catalog-next]');
 
