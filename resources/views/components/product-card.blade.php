@@ -1,16 +1,57 @@
+
 @props(['product'])
-<article class="product-card">
-    <a class="product-image-wrap" href="{{ route('store.show', $product['slug']) }}" aria-label="View {{ $product['name'] }}">
-        <img src="{{ asset($product['image'] ?? 'images/products/product-placeholder.svg') }}" alt="{{ $product['name'] }} illustration" loading="lazy">
-        <span class="product-image-badge">Sample item</span>
+
+@php
+    $type = $product['type'] ?? '';
+    $badge = $type === 'rent' ? 'Sewa' : ($type === 'sale' ? 'Jual' : null);
+@endphp
+
+<article class="catalog-product-card">
+
+    {{-- PRODUCT IMAGE --}}
+    <a
+        class="catalog-product-image"
+        href="{{ route('store.show', $product['slug']) }}"
+        aria-label="Lihat {{ $product['name'] }}"
+    >
+        <img
+            src="{{ asset($product['image'] ?? 'images/products/product-placeholder.svg') }}"
+            alt="{{ $product['name'] }}"
+            loading="lazy"
+        >
+
+        @if ($badge)
+            <span class="catalog-product-badge">
+                {{ $badge }}
+            </span>
+        @endif
     </a>
-    <div class="product-card-body reveal">
-        <p class="eyebrow">{{ $product['category'] }}</p>
-        <h3><a href="{{ route('store.show', $product['slug']) }}">{{ $product['name'] }}</a></h3>
-        <p>{{ $product['description'] }}</p>
-        <div class="product-card-bottom">
-            <span class="availability-label">{{ $product['availability'] }}</span>
-            <a class="icon-link" href="{{ route('store.show', $product['slug']) }}" aria-label="View product details">↗</a>
-        </div>
+
+    {{-- PRODUCT INFORMATION --}}
+    <div class="catalog-product-body">
+
+        <h3>
+            {{ $product['name'] }}
+        </h3>
+
+        <p class="catalog-product-description">
+            {{ $product['description'] }}
+        </p>
+
+                            <strong class="service-catalog-price">
+                        {{ $product['price_label'] ?? $product['availability'] ?? 'Price' }}
+                    </strong>
+
+        <a
+            href="{{ route('store.show', $product['slug']) }}"
+            class="catalog-product-order"
+        >
+            Order Here
+            <span aria-hidden="true">›</span>
+        </a>
+
+
+
     </div>
+
 </article>

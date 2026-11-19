@@ -1,14 +1,35 @@
-<section class="section section-muted" id="services">
-    <div class="container">
-        <div class="section-heading section-heading-row reveal">
-            <div><p class="eyebrow">WHAT WE DO</p><h2 class="section-title">Our Services</h2></div>
-            <div class="section-heading-aside"><p>From aerial capture to detailed 3D deliverables, explore the service areas prepared for JST.</p><a class="text-link" href="{{ route('services.index') }}">View all services <span aria-hidden="true">→</span></a></div>
+
+    <section class="home-services" id="services">
+
+        {{-- Section Heading --}}
+        <div class="home-services-heading">
+            <div class="container">
+                <h2>Services</h2>
+            </div>
         </div>
-        <div class="service-grid reveal">
-            @foreach($services as $service)
-                <x-service-card :service="$service" />
-            @endforeach
+
+        <div class="home-services-content">
+            <div class="container">
+
+                {{-- Section Introduction --}}
+                <div class="home-services-intro reveal">
+
+                    <p>
+                       With the support of a skilled and experienced team, combined with advanced surveying technology and modern equipment, we provide a comprehensive range of services, including Topographic Surveys, Land Surveys, Geodetic Surveys, UAV Mapping, Aerial Photogrammetry, Bathymetric Surveys, and other geospatial solutions.
+                    </p>
+
+                    <a href="{{ route('services.index') }}"
+                    class="home-services-button">
+                        Services
+                    </a>
+
+                </div>
+                
+                {{-- Service Image Carousel --}}
+                <div class="services-page-carousel">
+                    <x-service-slider :slides="$serviceSlides" />
+                </div>
+            </div>
         </div>
-        <div class="center-action"><a class="button button-primary" href="{{ route('services.index') }}">Explore all 8 services <span aria-hidden="true">↗</span></a></div>
-    </div>
-</section>
+
+    </section>

@@ -20,7 +20,7 @@
     <rect x="-43" y="-25" width="86" height="76" rx="15" fill="#f4f8ff" stroke="none"/><circle cx="0" cy="13" r="13" fill="#0d315a" stroke="none"/>
   </g>
   <rect x="72" y="72" width="11" height="120" rx="6" fill="#e5a85a"/>
-  <text x="112" y="118" fill="#b9d6ff" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="27" letter-spacing="7">JST IMAGE PLACEHOLDER</text>
+  <text x="112" y="118" fill="#b9d6ff" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="27" letter-spacing="7"> IMAGE PLACEHOLDER</text>
   <text x="112" y="180" fill="#ffffff" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="53">Survey Accessories</text>
   <text x="112" y="231" fill="#d8e6f6" font-family="Arial,Helvetica,sans-serif" font-size="27">Product photo placeholder</text>
   <text x="112" y="930" fill="#bdd0e6" fill-opacity=".75" font-family="Arial,Helvetica,sans-serif" font-size="20" letter-spacing="3">LOCAL ASSET · REPLACE WHEN CLIENT IMAGES ARE READY</text>

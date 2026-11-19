@@ -3,20 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\ServiceRepository;
+use App\Repositories\ProductRepository;
 use Illuminate\View\View;
 
 class ServiceController extends Controller
 {
-    public function __construct(private ServiceRepository $services)
+    public function __construct(private ServiceRepository $services, private ProductRepository $products)
     {
     }
 
-    public function index(): View
-    {
-        return view('pages.services.index', [
-            'services' => $this->services->all(),
-        ]);
-    }
+public function index(): View
+{
+    return view('pages.services.index', [
+        'services' => $this->services->all(),
+        'serviceSlides' => $this->services->getServicePageSlides(),
+        'catalogProducts' => array_slice($this->products->all(), 0, 6),
+    ]);
+}
 
     public function show(string $slug): View
     {

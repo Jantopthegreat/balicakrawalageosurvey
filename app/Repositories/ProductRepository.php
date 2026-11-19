@@ -2,45 +2,25 @@
 
 namespace App\Repositories;
 
-/** Sample Store items. No cart or payment integration is implemented. */
+use App\Models\Product;
+
 class ProductRepository
 {
     public function all(): array
     {
-        return [
-            [
-                'slug' => 'mapping-drone',
-                'name' => 'Mapping Drone',
-                'category' => 'Drone Platform',
-                'description' => 'Sample product description for a drone used in surveying and mapping workflows.',
-                'image' => 'images/products/product-drone-placeholder.svg',
-                'availability' => 'Contact for availability',
+        return Product::query()->latest('id')->get()->map(
+            fn (Product $product): array => [
+                'slug' => $product->slug,
+                'name' => $product->name,
+                'category' => $product->category,
+                'type' => $product->type,
+                'description' => $product->description,
+                'images' => $images = $this->imageUrls($product),
+                'image' => $images[0],
+                'availability' => $product->availability,
+                'price_label' => $product->price_label,
             ],
-            [
-                'slug' => 'gnss-receiver',
-                'name' => 'GNSS Receiver',
-                'category' => 'Survey Equipment',
-                'description' => 'Sample product description for a GNSS receiver used to support positioning tasks.',
-                'image' => 'images/products/product-gnss-placeholder.svg',
-                'availability' => 'Contact for availability',
-            ],
-            [
-                'slug' => 'lidar-sensor',
-                'name' => 'LiDAR Sensor',
-                'category' => 'Mapping Sensor',
-                'description' => 'Sample product description for a sensor designed for laser-based spatial data capture.',
-                'image' => 'images/products/product-lidar-placeholder.svg',
-                'availability' => 'Contact for availability',
-            ],
-            [
-                'slug' => 'survey-accessories',
-                'name' => 'Survey Accessories',
-                'category' => 'Accessories',
-                'description' => 'Sample product description for accessories used with surveying equipment.',
-                'image' => 'images/products/product-accessories-placeholder.svg',
-                'availability' => 'Contact for availability',
-            ],
-        ];
+        )->all();
     }
 
     public function findBySlug(string $slug): ?array
@@ -52,5 +32,21 @@ class ProductRepository
         }
 
         return null;
+    }
+
+    private function imageUrls(Product $product): array
+    {
+        $paths = $product->images ?: ($product->image ? [$product->image] : []);
+
+        if ($paths === []) {
+            return [asset('images/products/product-placeholder.svg')];
+        }
+
+        return array_map(
+            static fn (string $path): string => str_starts_with($path, 'products/')
+                ? asset('storage/' . $path)
+                : asset($path),
+            $paths,
+        );
     }
 }
