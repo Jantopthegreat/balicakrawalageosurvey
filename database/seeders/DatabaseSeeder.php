@@ -22,10 +22,10 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::updateOrCreate(
-            ['email' => 'admin@dhurvatech.test'],
+            ['email' => ''],
             [
-                'name' => 'Admin Dhurva Tech',
-                'password' => 'password',
+                'name' => 'Admin Geo Cakrawala',
+                'password' => 'Cakrawala123',
                 'is_admin' => true,
             ],
         );

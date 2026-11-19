@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="@yield('meta_description', 'CAKRAWALA — surveying, mapping, and geospatial solutions.')">
     <meta name="theme-color" content="#082d62">
+    <link rel="icon" href="@yield('favicon', config('cakrawala.brand.logo'))" type="image/x-icon">
     <title>@yield('title', config('cakrawala.brand.name'))</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('head')

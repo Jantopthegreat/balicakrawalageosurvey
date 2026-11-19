@@ -5,6 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="@yield('favicon', config('cakrawala.brand.logo'))" type="image/x-icon">
 
     <title>Dashboard Admin | {{ config('cakrawala.brand.name') }}</title>
 
