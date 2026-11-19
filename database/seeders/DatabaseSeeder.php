@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
                 'is_admin' => true,
             ],
         );
+        
 
         foreach ([
             ['nama' => 'Mitra Survei Nusantara', 'image' => null],
