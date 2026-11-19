@@ -2,6 +2,43 @@
    ADMIN LOGIN - SPLIT SCREEN
 ===================================== */
 
+.admin-forgot-link { align-self: flex-end; color: #123f82; font-size: .875rem; }
+.admin-forgot-link:hover { text-decoration: underline; }
+
+.admin-password-card {
+    width: 100%;
+    max-width: 600px;
+    padding: clamp(20px, 4vw, 32px);
+    background: #fff;
+    border: 1px solid #e3e8f0;
+    border-radius: 15px;
+}
+
+.admin-password-form, .admin-password-field {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.admin-password-field { gap: 9px; }
+.admin-password-field label { color: #26364c; font-size: .9rem; font-weight: 600; }
+.admin-password-field input {
+    width: 100%;
+    min-height: 47px;
+    padding: 12px 14px;
+    border: 1px solid #dfe5ed;
+    border-radius: 8px;
+    background: #fbfcfe;
+    color: #26364c;
+    font: inherit;
+}
+.admin-password-field input:focus { outline: 2px solid #e97e20; outline-offset: 2px; }
+.admin-password-field input[aria-invalid="true"] { border-color: #b42318; }
+.admin-password-field small { color: #64748b; font-size: .875rem; }
+.admin-password-error { margin: 0; color: #b42318; font-size: .875rem; }
+.admin-password-success { margin: 0 0 24px; padding: 14px; border-radius: 8px; background: #ecfdf3; color: #166534; }
+.admin-password-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 12px; }
+
 .admin-body {
     min-height: 100vh;
     margin: 0;

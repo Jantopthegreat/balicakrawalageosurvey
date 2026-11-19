@@ -5,6 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    @include('admin.partials.favicon')
 
     <title>Login Admin | {{ config('cakrawala.brand.name') }}</title>
 
@@ -74,6 +75,9 @@
 
 
                 {{-- ERROR MESSAGE --}}
+                @if (session('status'))
+                    <p class="admin-password-success" role="status">{{ session('status') }}</p>
+                @endif
                 @if ($errors->any())
                     <div class="admin-alert" role="alert">
                         {{ $errors->first() }}
@@ -145,6 +149,8 @@
                         sudah benar sebelum login.
                     </div>
 
+
+                    <a href="{{ route('admin.password.request') }}" class="admin-forgot-link">Lupa password?</a>
 
                     <label class="admin-remember">
                         <input
