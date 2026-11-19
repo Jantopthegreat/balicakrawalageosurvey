@@ -10,6 +10,11 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+    public function sendPasswordResetNotification($token): void
+    {
+        $this->notify(new \App\Notifications\AdminResetPassword($token));
+    }
+
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 

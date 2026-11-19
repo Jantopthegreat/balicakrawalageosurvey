@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="@yield('favicon', config('cakrawala.brand.logo'))" type="image/x-icon">
+    @include('admin.partials.favicon')
     <title>@yield('title', 'Admin') | {{ config('cakrawala.brand.name') }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
