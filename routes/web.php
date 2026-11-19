@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\AdminPasswordController;
+use App\Http\Controllers\AdminPasswordResetController;
 use App\Http\Controllers\AdminBlogController;
 use App\Http\Controllers\AdminContactController;
 use App\Http\Controllers\AdminDashboardController;
@@ -19,10 +21,16 @@ Route::prefix('admin')->name('admin.')->group(function (): void {
     Route::middleware('guest')->group(function (): void {
         Route::get('/login', [AdminAuthController::class, 'create'])->name('login');
         Route::post('/login', [AdminAuthController::class, 'store'])->name('login.store');
+        Route::get('/forgot-password', [AdminPasswordResetController::class, 'create'])->name('password.request');
+        Route::post('/forgot-password', [AdminPasswordResetController::class, 'send'])->middleware('throttle:5,1')->name('password.email');
+        Route::get('/reset-password/{token}', [AdminPasswordResetController::class, 'edit'])->name('password.reset');
+        Route::post('/reset-password', [AdminPasswordResetController::class, 'update'])->middleware('throttle:6,1')->name('password.reset.store');
     });
 
     Route::middleware(['auth', 'admin'])->group(function (): void {
         Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
+        Route::get('/password', [AdminPasswordController::class, 'edit'])->name('password.edit');
+        Route::put('/password', [AdminPasswordController::class, 'update'])->middleware('throttle:6,1')->name('password.update');
         Route::resource('blog', AdminBlogController::class)->except(['show']);
         Route::resource('contact', AdminContactController::class)->except(['show']);
         Route::resource('services', AdminServicesController::class)->except(['show']);

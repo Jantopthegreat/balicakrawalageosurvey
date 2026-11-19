@@ -82,6 +82,16 @@
             <span>Mitra</span>
         </a>
 
+        <a href="{{ route('admin.password.edit') }}"
+            class="admin-nav-link {{ request()->routeIs('admin.password.*') ? 'admin-nav-link-active' : '' }}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="4" y="10" width="16" height="11" rx="2"/>
+                <path d="M8 10V6a4 4 0 0 1 8 0v4M12 14v3"/>
+            </svg>
+            <span>Ubah Password</span>
+        </a>
+
         <a href="{{ route('home') }}" target="_blank" class="admin-nav-link">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
