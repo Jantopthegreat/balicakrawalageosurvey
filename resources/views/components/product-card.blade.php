@@ -42,13 +42,6 @@
                         {{ $product['price_label'] ?? $product['availability'] ?? 'Price' }}
                     </strong>
 
-        <a
-            href="{{ route('store.show', $product['slug']) }}"
-            class="catalog-product-order"
-        >
-            Order Here
-            <span aria-hidden="true">›</span>
-        </a>
 
 
 
