@@ -1,3 +1,16 @@
+@php
+    $contactSettings = \App\Models\Contact::query()
+        ->latest('id')
+        ->first();
+
+    $contact = config('cakrawala.contact');
+
+    if ($contactSettings) {
+        $contact['whatsapp'] = $contactSettings->no_hp;
+        $contact['email'] = $contactSettings->email;
+        $contact['address'] = $contactSettings->alamat;
+    }
+@endphp
 
 <footer class="site-footer">
         {{-- COMPANY LOCATION MAP --}}
@@ -94,11 +107,38 @@
             <a href="{{ route('store.index') }}">Buy Sell</a>
         </div>
 
-        <!-- <div class="footer-column footer-contact">
-            <h2>Contact</h2>
-            <p>{{ $contact['address'] }}</p>
-            <a href="{{ route('contact') }}" class="footer-contact-link">Contact our team <span aria-hidden="true">→</span></a>
-        </div> -->
+{{-- Contact Us --}}
+<div class="footer-column footer-contact">
+    <h2>Contact Us</h2>
+
+    {{-- Phone --}}
+    @if(!empty($contact['whatsapp']))
+        <a href="https://wa.me/{{ preg_replace('/\D+/', '', $contact['whatsapp']) }}"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="footer-contact-item">
+            <i class="fas fa-phone-alt"></i>
+            <span>{{ $contact['whatsapp'] }}</span>
+        </a>
+    @endif
+
+    {{-- Email --}}
+    @if(!empty($contact['email']))
+        <a href="mailto:{{ $contact['email'] }}"
+           class="footer-contact-item">
+            <i class="fas fa-envelope"></i>
+            <span>{{ $contact['email'] }}</span>
+        </a>
+    @endif
+
+    {{-- Address --}}
+    @if(!empty($contact['address']))
+        <div class="footer-contact-item footer-address">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>{{ $contact['address'] }}</span>
+        </div>
+    @endif
+</div>
     </div>
     <!-- <div class="footer-bottom">
         <div class="container footer-bottom-inner">
