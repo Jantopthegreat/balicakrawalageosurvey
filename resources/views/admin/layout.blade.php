@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title', 'Admin') | {{ config('jst.brand.name') }}</title>
+    <link rel="icon" href="@yield('favicon', config('cakrawala.brand.logo'))" type="image/x-icon">
+    <title>@yield('title', 'Admin') | {{ config('cakrawala.brand.name') }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="admin-body">

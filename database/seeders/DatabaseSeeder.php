@@ -22,10 +22,10 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::updateOrCreate(
-            ['email' => 'admin@dhurvatech.test'],
+            ['email' => ''],
             [
-                'name' => 'Admin Dhurva Tech',
-                'password' => 'password',
+                'name' => 'Admin Geo Cakrawala',
+                'password' => 'Cakrawala123',
                 'is_admin' => true,
             ],
         );
@@ -53,8 +53,8 @@ class DatabaseSeeder extends Seeder
                 'type' => $type,
                 'description' => $description,
                 'image' => $image,
-                'availability' => 'Tersedia',
-                'price_label' => 'Harga',
+                'availability' => 'Available',
+                'price_label' => 'Cost',
             ]);
         }
 

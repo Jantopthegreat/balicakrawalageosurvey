@@ -58,14 +58,7 @@
             {{-- Social Media --}}
             <div class="footer-socials">
 
-                <a href="{{ config('cakrawala.social.facebook', '#') }}"
-                   aria-label="Facebook">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path fill="currentColor" d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.413c0-3.03 1.792-4.704 4.533-4.704 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.49 0-1.956.93-1.956 1.885v2.273h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
-                    </svg>
-                </a>
-
-                <a href="{{ config('cakrawala.social.instagram', '#') }}"
+                <a href="{{ config('cakrawala.social.instagram', 'https://instagram.com/cakrawalageosurvey') }}"
                    aria-label="Instagram">
                     <svg viewBox="0 0 24 24" aria-hidden="true">
                         <path fill="none" stroke="currentColor" stroke-width="2"
@@ -76,12 +69,6 @@
                     </svg>
                 </a>
 
-                <a href="{{ config('cakrawala.social.twitter', '#') }}"
-                   aria-label="Twitter">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path fill="currentColor" d="M23.953 4.57a10 10 0 0 1-2.825.775 4.932 4.932 0 0 0 2.163-2.723 9.99 9.99 0 0 1-3.127 1.195 4.916 4.916 0 0 0-8.384 4.482A13.94 13.94 0 0 1 1.64 2.162a4.916 4.916 0 0 0 1.523 6.56 4.9 4.9 0 0 1-2.229-.616v.062a4.92 4.92 0 0 0 3.946 4.818 4.93 4.93 0 0 1-2.224.084 4.927 4.927 0 0 0 4.6 3.419A9.87 9.87 0 0 1 0 20.54a13.93 13.93 0 0 0 7.548 2.213c9.057 0 14.01-7.503 14.01-14.01 0-.213-.005-.425-.014-.636a10 10 0 0 0 2.46-2.548z"/>
-                    </svg>
-                </a>
 
             </div>
         </div>

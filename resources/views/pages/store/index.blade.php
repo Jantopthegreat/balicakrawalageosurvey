@@ -13,7 +13,7 @@
              CATALOG HEADER
         ================================= --}}
         <header class="catalog-header">
-            <h1>Katalog</h1>
+            <h1>Catalog</h1>
 
             <form
                 action="{{ route('store.index') }}"
@@ -29,7 +29,7 @@
                 >
 
                 <select name="category" aria-label="Filter kategori">
-                    <option value="">Semua Kategori</option>
+                    <option value="">All Categories</option>
 
                     @foreach ($categories as $category)
                         <option
@@ -54,9 +54,9 @@
         <section class="catalog-group">
 
             <div class="catalog-group-heading">
-                <h2>Alat untuk Disewa</h2>
+                <h2>Equipment for Rent</h2>
                 <p>
-                    Peralatan survei yang tersedia untuk kebutuhan proyek Anda.
+                    Survey equipment available for your project needs.
                 </p>
             </div>
 
@@ -123,9 +123,9 @@
         <section class="catalog-group">
 
             <div class="catalog-group-heading">
-                <h2>Alat untuk Dijual</h2>
+                <h2>Equipment for Sale</h2>
                 <p>
-                    Peralatan survei dan pemetaan yang tersedia untuk pembelian.
+                    Survey and mapping equipment available for purchase.
                 </p>
             </div>
 

@@ -24,7 +24,7 @@ class HomeController extends Controller
         return view('pages.home', [
             'hero' => $this->pages->homeHero(),
             'services' => array_slice($this->services->all(), 0, 4),
-            'serviceSlides' => $this->services->getHomepageSlides(),
+            'serviceSlides' => $this->services->getServicePageSlides(),
             'documentation' => $this->documentation->homePreview(),
             'mitra' => $this->mitra->all(),
         ]);

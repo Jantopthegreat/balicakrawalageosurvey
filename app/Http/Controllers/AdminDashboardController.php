@@ -22,8 +22,8 @@ class AdminDashboardController extends Controller
 
         // Jenis produk yang tersedia
         $typeCounts = [
-            'jual' => (int) ($typeResults['sale'] ?? 0),
-            'sewa' => (int) ($typeResults['rent'] ?? 0),
+            'Sale' => (int) ($typeResults['sale'] ?? 0),
+            'Rent' => (int) ($typeResults['rent'] ?? 0),
         ];
 
         // Preview 4 produk terbaru

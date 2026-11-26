@@ -12,7 +12,7 @@ class ServiceRepository
     {
         $databaseServices = Services::query()->latest('id')->get()->map(static function (Services $service): array {
             $image = $service->image;
-            $imageUrl = asset('images/services/catalog.jpg');
+            $imageUrl = asset('images/products/product-placeholder.svg');
 
             if ($image && str_starts_with($image, 'services/')) {
                 if (Storage::disk('public')->exists($image)) {

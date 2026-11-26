@@ -43,7 +43,7 @@
                             <tr>
                                 <td class="contact-name"><strong>{{ $product->name }}</strong>@if ($loop->first && $products->currentPage() === 1)<span class="contact-latest-badge">Terbaru</span>@endif</td>
                                 <td data-label="Kategori">{{ $product->category }}</td>
-                                <td data-label="Jenis">{{ $product->type === 'rent' ? 'Sewa' : 'Jual' }}</td>
+                                <td data-label="Jenis">{{ $product->type === 'rent' ? 'Rent' : 'Sale' }}</td>
                                 <td data-label="Ketersediaan">{{ $product->availability }}</td>
                                 <td class="contact-actions-cell">
                                     <div class="admin-contact-actions">
@@ -51,7 +51,7 @@
                                         <form method="POST" action="{{ route('admin.products.destroy', $product) }}" onsubmit="return confirm('Hapus produk ini?')">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="admin-contact-delete">Hapus</button>
+                                            <button type="submit" class="admin-contact-delete">Delete</button>
                                         </form>
                                     </div>
                                 </td>

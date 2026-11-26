@@ -57,8 +57,8 @@
         @error('availability') <p class="admin-contact-field-error">{{ $message }}</p> @enderror
     </div>
     <div class="admin-contact-form-field @error('price_label') has-error @enderror">
-        <label for="price_label">Label Harga <span>*</span></label>
-        <input id="price_label" name="price_label" type="text" value="{{ old('price_label', $product->price_label ?? 'Harga') }}" placeholder="Contoh: Hubungi Kami" required>
+        <label for="price_label">Label Harga </label>
+        <input id="price_label" name="price_label" type="text" value="{{ old('price_label', $product->price_label ?? '') }}" placeholder="Kosongkan Jika Tidak Ada Harga" >
         @error('price_label') <p class="admin-contact-field-error">{{ $message }}</p> @enderror
     </div>
     <div class="admin-contact-form-field @error('description') has-error @enderror">
